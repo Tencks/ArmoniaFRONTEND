@@ -1,0 +1,22 @@
+
+.notificacion {
+    margin-bottom: 10px; /* Puedes ajustar este valor según tus preferencias */
+  }
+
+  .red-bg {
+    background-color: rgb(216, 26, 26); /* Cambia "red" al color de fondo que desees */
+    color: white; /* Color del texto */
+    /* Otros estilos de diseño, como margen, relleno, tamaño de fuente, etc., según tus preferencias */
+    padding: 10px;
+    border-radius: 5px;
+    /* Puedes agregar más propiedades de estilo según sea necesario */
+  }
+
+  .green-bg {
+    background-color: rgb(33, 177, 69); /* Cambia "red" al color de fondo que desees */
+    color: white; /* Color del texto */
+    /* Otros estilos de diseño, como margen, relleno, tamaño de fuente, etc., según tus preferencias */
+    padding: 10px;
+    border-radius: 5px;
+    /* Puedes agregar más propiedades de estilo según sea necesario */
+  }

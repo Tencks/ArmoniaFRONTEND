@@ -1,0 +1,98 @@
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+  <h1 class="display-4 fw-medium" style="padding: 1.5%;">Agregar Observación</h1>
+</div>
+
+
+<div class="container">
+  <form [formGroup]="LoadSemanalOForm"  (ngSubmit)="OnLoadSemanalO(LoadSemanalOForm.value)">
+  
+    <mat-horizontal-stepper linear>
+      <mat-step>
+        <ng-template matStepLabel>Observación Semanal</ng-template>
+        <!-- Primera etapa -->
+        <!-- Aquí coloca los campos correspondientes al residente -->
+
+
+        <div class="container h-100">
+            <div class="row">
+              <div class="col">
+                <mat-label>Al residente asignado</mat-label>
+                <select class="form-select" formControlName="residenteS">
+                    <option *ngFor="let residente of residentes" [value]="residente.id">{{ residente.nombreResidente }}</option>
+                  </select>
+              </div>
+              <div class="col">
+                <mat-label>Fecha de la consulta</mat-label>
+                <input type="date" class="form-control" formControlName="fechaConsulta" >
+              </div>
+            </div>
+    
+            <hr class="mx-n3">
+      
+            <div class="container h-100">
+                <div class="row">
+                  <div class="col">
+                    <mat-label>Tensión Arterial</mat-label>
+                    <input type="text" class="form-control" placeholder="Coloque su presión arterial" formControlName="tensionArterial" />
+                  </div>
+                  <div class="col">
+                    <mat-label>Glucemia</mat-label>
+                    <input type="text" class="form-control" placeholder="Coloque su glucemia" formControlName="glucemia" >
+                  </div>
+                </div>
+             </div>
+
+             <hr class="mx-n3">
+
+             <div class="container h-100">
+                <div class="row">
+                  <div class="col">
+                    <mat-label>Saturación</mat-label>
+                    <input type="text" class="form-control" placeholder="Coloque su saturación" formControlName="saturacion" />
+                  </div>
+                  <div class="col">
+                    <mat-label>Pulso</mat-label>
+                    <input type="text" class="form-control" placeholder="Coloque su pulso" formControlName="pulso" >
+                  </div>
+                </div>
+             </div>
+
+             <hr class="mx-n3">
+
+             <div class="container h-100">
+                <div class="row">
+                  <div class="col">
+                    <mat-label>Observaciones</mat-label>
+                    <textarea class="form-control" rows="3" placeholder="Detalles a tener en cuenta"  formControlName="observacionesSemanales"></textarea>
+                  </div>
+                </div>
+             </div>
+
+             <hr class="mx-n3">
+
+             <div class="container h-100">
+                <div class="row">
+                  <div class="col">
+                    <mat-label>Derivaciones</mat-label>
+                    <textarea class="form-control" rows="3" placeholder="Derivaciones a tener en cuenta"  formControlName="derivacionesSemanales"></textarea>
+                  </div>
+                </div>
+             </div>
+
+            </div>
+              <div>
+                <button mat-button >Cargar</button>
+              </div>
+  
+      </mat-step>
+  
+   
+
+    </mat-horizontal-stepper>
+  </form>
+   
+   
+</div>
+
+
+

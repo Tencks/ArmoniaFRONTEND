@@ -1,0 +1,128 @@
+
+
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+  <h1 class="display-4 fw-medium" style="padding: 1.5%;" *ngIf="Local">{{Local.nombre}}</h1>
+</div>
+
+
+<div class="container" *ngIf="Local">
+  <div class="card mb-8" style="max-width: 100%; height: 55vh; overflow: hidden;">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <img src="{{Local.foto }}" class="img-fluid " style="height: auto; border-radius: 15%;margin-top: 2%;margin-left: 2%;">
+          </div>
+        <div class="col-md-6">
+            <div class="card-body">
+           
+              <p class="card-text"><small class="text-body-secondary">&nbsp;</small></p>            
+              <p class="card-text"></p>
+
+                    <!-- Detalles adicionales en un acordeón -->
+                    <div class="col-sm-10 ">
+                      <div class="accordion" id="accordionDetalles" >
+
+                            <!-- Detalle 3: numHabitacion, medica y observaciones -->
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="detalle3">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetalle3" aria-expanded="true" aria-controls="collapseDetalle3">
+                                  Datos Generales
+                                </button>
+                              </h2>
+                              <div id="collapseDetalle3" class="accordion-collapse collapse show" aria-labelledby="detalle3" data-bs-parent="#accordionDetalles">
+                                <div class="accordion-body">
+                                    <p><strong>Domicilio:</strong> {{ Local.domicilio }}</p>
+                                    <p><strong>Localidad:</strong> {{ Local.localidad }}</p>
+                                    <p><strong>Cuil:</strong> {{ Local.cuil }}</p>
+                                    <p><strong>Número telefónico:</strong> {{ Local.numeroTelefonico }}</p>
+                                    <p><strong>Fecha de Surgimiento:</strong> {{ Local.fechaCreacion | date: 'dd/MM/yyyy' }}</p>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                            
+                     
+                          
+                         </div>
+                     </div>
+         
+   
+
+             </div>
+
+             <div class="d-flex justify-content-end mt-3 position-absolute bottom-0 end-0 mb-2 me-2">
+              <a class="btn btn-primary me-2" (click)="openUpdateAlert()">Actualizar Datos</a>
+              <a class="btn btn-primary" (click)="LoadMedicamentoLocal()">Cargar medicamentos</a>
+            </div>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+  <h1 class="display-4 fw-medium" style="padding: 1.5%;">Lista de medicamentos</h1>
+</div>
+
+
+<div class="container text-center" >
+
+
+  
+  
+      <table class="table table-dark table-striped">
+        
+        <thead>
+          <tr>
+            <th scope="col">Generico</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Peso</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let medicamento of Medicamentos">
+              <th scope="row" >{{medicamento.Generico}}</th>
+              <th scope="row" >{{medicamento.Nombre}}</th>
+              <th scope="row" >{{medicamento.Marca}}</th>
+              <th scope="row" >{{medicamento.Peso}}</th>
+          </tr>
+  
+         
+        </tbody>
+  
+      </table>
+  
+      <table class="table table-dark table-striped">
+        
+        <thead>
+          <tr>
+            <th scope="col">Cantidad total</th>
+            <th scope="col">Medida</th>
+            <th scope="col">Fecha de Ingreso</th>
+            <th scope="col">Consumo diario</th>
+            <th scope="col">Código</th>
+            <th scope="col">Observaciones</th>
+            <th scope="col">Derivaciones</th>
+          </tr>
+        </thead>
+       <tbody>
+          <tr *ngFor="let medicamento of Medicamentos">
+              <th scope="row" >{{medicamento.CantidadTotal}}</th>
+              <th scope="row" >{{medicamento.Medida}}</th>
+              <th scope="row" >{{medicamento.FechaInicio}}</th>
+              <th scope="row" >{{medicamento.CantidadDiaria}}</th>
+              <th scope="row" >{{medicamento.Codigo}}</th>
+              <th scope="row" >{{medicamento.Observaciones}}</th>
+              <th scope="row" >{{medicamento.Derivaciones}}</th>
+          </tr>
+       </tbody>
+     
+      </table>
+  
+     
+  </div>

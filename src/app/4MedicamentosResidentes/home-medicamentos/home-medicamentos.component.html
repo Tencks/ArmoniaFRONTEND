@@ -1,0 +1,47 @@
+
+
+
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+    <h1 class="display-4 fw-medium" style="padding: 1.5%;">Lista de medicamentos</h1>
+</div>
+
+
+
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col" *ngFor="let paciente of pacientes" (click)="MoreInfo(paciente.id)">
+
+      <div class="card mb-3" style="max-width: 540px; max-height: 20vh; border: 2px solid black; overflow: hidden;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src={{paciente.fotoResidente}} class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title">{{paciente.apellidoResidente}}</h4>
+              <p class="card-text">{{paciente.nombreResidente}}</p>
+              <p class="card-text"><small class="text-body-secondary">{{paciente.observacionesResidente}}</small></p>
+              <p class="card-text">{{paciente.dniResidente}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
+ 
+
+  </div>
+
+  
+
+</div>
+
+<div class="container">
+
+  <div class="row">
+    <button class="btn btn-primary" (click)="loadNewMedicamento()">Nuevo medicamento</button>
+  </div>
+  
+</div>

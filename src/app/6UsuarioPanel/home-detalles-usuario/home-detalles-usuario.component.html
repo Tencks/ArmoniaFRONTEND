@@ -1,0 +1,109 @@
+
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+    <h1 class="display-4 fw-medium" style="padding: 1.5%;">Perfil del usuario</h1>
+</div>
+
+    <div class="container" *ngIf="userDatos">
+        <div class="row gutters">
+          <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="account-settings">
+                  <div class="user-profile">
+                    <div class="user-avatar">
+                      <img *ngIf="userDatos.fotoUser" [src]="userDatos.fotoUser" alt="{{ userDatos.username }} Avatar">
+                      <img *ngIf="!userDatos.fotoUser" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Default Avatar">
+                    </div>
+                    <h5 class="user-name">{{ userDatos.username }}</h5>
+                    <h6 class="user-email">{{ userDatos.email }}</h6>
+                  </div>
+                  <div class="about">
+                    <h5>Descripción</h5>
+                    <p cols="30" rows="10">{{userDatos.descriptionUser}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="row gutters">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h5 class="mb-2 text-primary">Datos personales</h5>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="fullName">Nombre</label>
+                      <input type="text" class="form-control" id="fullName" [placeholder]="userDatos.username" disabled>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="eMail">Correo</label>
+                      <input type="email" class="form-control" id="eMail" [placeholder]="userDatos.email" disabled>
+                    </div>
+                  </div>
+                  
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" style="margin-top: 1%;">
+                    <div class="form-group">
+                      <label for="phone">Número celular</label>
+                      <input type="text" class="form-control" id="phone" [placeholder]="userDatos.numCelular" disabled>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"  style="margin-top: 1%;">
+                    <div class="form-group">
+                      <label for="phone">Domicilio</label>
+                      <input type="text" class="form-control" id="phone" [placeholder]="userDatos.direccion" disabled>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row gutters">
+
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h5 class="mt-3 mb-2 text-primary">Otros datos</h5>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="Street">Cumpleaños</label>
+                      <input type="text" class="form-control" id="Street" [placeholder]="userDatos.birthday| date: 'dd/MM/yyyy'" disabled>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="Street">Cargo</label>
+                      <input type="text" class="form-control" id="Street" [placeholder]="userDatos.cargo " disabled>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row gutters">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <p></p>
+                    <div class="text-right">
+                      <button type="button" class="btn btn-primary" (click)="onUpdateDatos()" style="margin-right: 1%;">
+                        Actualizar datos
+                      </button>
+                      <button class="btn btn-danger" (click)="onLogout()">
+                        Desconectarse
+                      </button>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+

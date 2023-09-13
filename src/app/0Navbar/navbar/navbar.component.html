@@ -1,0 +1,124 @@
+<nav class="navbar  sticky-top bg-body-tertiary">
+    <div class="container-fluid">
+
+      <div class="row w-100 d-flex">
+        <div class="col-md-10 text-start">
+            <!-- Logo de la marca -->
+  
+        <a class="navbar-brand d-flex" (click)="HomeResidenteGO()" >
+          <img src="../../assets/navbar/Armonia.png" alt="Armonia" width="105" height="36">
+        </a>
+        </div>
+
+        <div class="col-md-1 text-end d-flex">
+          <!-- Botón "Alerts" -->
+
+              <button type="button" class="btn btn-primary position-relative text-end navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAlerts" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                Alerts <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
+              </button>
+
+        </div>
+
+        <div class="col-md text-end d-flex">
+          <!-- Botón del Offcanvas -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" aria-expanded="false">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
+
+      </div>  
+      
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
+        <div class="offcanvas-header">
+          <div class="container">
+            <a class="navbar-brand text-center" (click)="HomeResidenteGO()" >
+              <img src="../../assets/navbar/Armonia.png" alt="Armonia" width="100%" height="80%">
+            </a>
+          </div>
+          
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <hr>
+            <li class="nav-item">
+              <a class="nav-link active"  style="cursor: pointer;" (click)="HomeResidenteGO()" 
+              data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+              >Residentes</a>
+            </li>
+            <hr>
+            <li class="nav-item">
+              <a class="nav-link" style="cursor: pointer;" (click)="CreateResidenteGO()"
+              data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+              >Agregar nuevo residente</a>
+            </li>
+            <hr>
+            <li class="nav-item">
+              <a class="nav-link active" style="cursor: pointer;" (click)="HomeMedicoGO()"
+              data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+              >Historial Medico</a>
+            </li>
+            <hr>
+            <li class="nav-item">
+              <a class="nav-link active" style="cursor: pointer;" (click)="HomeMedicamentosGO()"
+              data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+              >Lista de medicamentos</a>
+            </li>
+            <hr>
+            <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" (click)="CreateMedicamentoGO()"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+                >Agregar medicamento</a>
+            </li>
+              <hr>
+            <li class="nav-item">
+              <a class="nav-link active" style="cursor: pointer;" (click)="HomeMedicamentoLocalGO()"
+              data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+              >Armonia</a>
+            </li>
+            <hr>    
+            <li class="nav-item">
+              <a class="nav-link active" style="cursor: pointer;" (click)="HomeUsuarioGO()"
+              data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+              >Panel del Usuario</a>
+            </li>
+            <hr> 
+    
+          </ul>
+          
+
+            <app-back-button data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"></app-back-button>
+
+        </div>
+      </div>
+
+
+
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAlerts" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <div class="container">
+            <h1 class="title text-center">NOTIFICACIONES</h1>
+            <hr>
+          </div>
+          
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+           
+            <app-notificaciones></app-notificaciones>
+          
+          </ul>
+          
+
+            
+
+        </div>
+      </div>
+
+
+    </div>
+  </nav>
+
+
+ 

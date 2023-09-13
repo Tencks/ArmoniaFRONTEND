@@ -1,0 +1,129 @@
+
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+    <h1 class="display-4 fw-medium" style="padding: 1.5%;">Cargar nuevo medicamento</h1>
+  </div>
+  
+  <div class="container">
+    <form [formGroup]="LoadMedicamentoLocalForm"   >
+    
+      <mat-horizontal-stepper [linear]="true" [orientation]="orientation" [selectedIndex]="currentStep">
+        <mat-step  [completed]="currentStep >= 0">
+          <ng-template matStepLabel>A que persona se asigna</ng-template>
+          <!-- Primera etapa -->
+          <!-- Aquí coloca los campos correspondientes al residente -->
+    
+          <div class="row">
+            <div class="col">
+              <mat-label>Asignar al residente</mat-label>
+              <select class="form-select" formControlName="localA">
+                <option *ngIf="Local" [value]="Local.id">{{ Local.nombre }}</option>
+              </select>
+            </div>
+            <div class="col">
+              <mat-label>Es un medicamento genérico?</mat-label>
+              <select class="form-select" aria-label="Default select example"  formControlName="genericMedicamento">
+                <option *ngFor="let option of genericoOptions" [value]="option.value">{{option.label}}</option>
+              </select> 
+             
+            </div>
+          </div>
+  
+          <hr class="mx-n3"> 
+  
+          <div class="row">
+            <div class="col">
+              <mat-label>Nombre del medicamento</mat-label>
+              <input type="text" class="form-control" placeholder="Coloque el nombre"  formControlName="nombreMedicamento">
+            </div>
+            <div class="col">
+              <mat-label>Marca del medicamento</mat-label>
+              <input type="text" class="form-control" placeholder="Coloque la marca"  formControlName="marcaMedicamento" >
+            </div>
+          </div>
+  
+          <hr class="mx-n3">
+  
+          <div class="row">
+            <div class="col">
+              <mat-label>Peso del medicamento</mat-label>
+              <input type="number" class="form-control" placeholder="Coloque el nombre"  formControlName="pesoMedicamento">
+            </div>
+            <div class="col">
+              <mat-label>Tipo de medición utilizada</mat-label>
+              <select class="form-select" aria-label="Default select example"  formControlName="medicionMedicamento">
+                <option *ngFor="let option of medicamentoOptions" [value]="option.value">{{option.label}}</option>
+              </select>
+            </div>
+          </div>
+  
+          <button mat-button matStepperNext>Siguiente</button>
+  
+        </mat-step>
+    
+        <mat-step  [completed]="currentStep >= 1">
+          <ng-template matStepLabel>Otros datos necesarios</ng-template>
+          <!-- Primera etapa -->
+          <!-- Aquí coloca los campos correspondientes al residente -->
+      
+          <div class="row">
+            <div class="col">
+              <mat-label>Fecha en la que ingresa</mat-label>
+              <input type="date" class="form-control " formControlName="fechaInicio"/>
+            </div>
+            <div class="col">
+              <mat-label>Cantidad total de ingreso</mat-label>
+              <input type="number" class="form-control " formControlName="cantidadTotal"/>
+            </div>
+          </div>
+  
+          <hr class="mx-n3">
+  
+  
+      
+                <div class="row">
+                  <div class="col">
+                    <mat-label>Codigo del medicamento</mat-label>
+                    <input type="text" class="form-control" placeholder="Coloque el código"  formControlName="codMedicamento">
+                  </div>
+                  <div class="col">
+                    <mat-label>Consumo diario</mat-label>
+                    <input type="number" class="form-control" placeholder="Coloque la cantidad que consume por día"  formControlName="cantidadDiaria" >
+                  </div>
+                </div>
+        
+                <hr class="mx-n3">
+        
+                <div class="row">
+                  <div class="col">
+                    <mat-label>Observaciones del medicamento</mat-label>
+                    <textarea class="form-control" rows="3" placeholder="Detalles a tener en cuenta sobre el medicamento"  formControlName="observacionesMedicamento"></textarea>
+                  </div>
+                </div>
+        
+                <hr class="mx-n3">
+        
+                <div class="row">
+                  <div class="col">
+                    <mat-label>Derivaciones del medicamento</mat-label>
+                    <textarea class="form-control" rows="3" placeholder="Derivaciones hechas por el medico de cabecera"  formControlName="derivacionesMedicamento"></textarea>
+                  </div>
+                </div>
+  
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button (click)="OnLoadMedicamento(LoadMedicamentoLocalForm.value)">Cargar</button>
+                    </div>
+          </mat-step> 
+      
+    
+      </mat-horizontal-stepper>
+    </form>
+     
+  
+ 
+     
+  </div>
+  
+  
+  
+  

@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { 
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    animation: backgroundAnimation 20s linear infinite alternate;
+    
+    overflow-x: hidden;
+  }
+  
+  .background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Coloca el fondo detrás del contenido */
+}
+
+.background-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(from -45deg, #4bb7d8, #85ae72, #4bb7d8, #85ae72, #4bb7d8);
+    background-size: 200% 200%;
+    animation: backgroundAnimation 20s linear infinite ;
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}

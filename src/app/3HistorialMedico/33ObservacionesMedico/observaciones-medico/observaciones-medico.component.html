@@ -1,0 +1,30 @@
+
+
+
+
+
+<div class="container " >
+  
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Revisión Médica</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Observación</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let observa of SemanalOb">
+            <th scope="row" >Revisión de la semana</th>
+            <th scope="row" >{{observa.FechaConsulta}}</th>
+            <th scope="row" >{{observa.Observaciones}}</th>
+        </tr>
+
+       
+      </tbody>
+
+   
+    </table>
+
+   
+</div>

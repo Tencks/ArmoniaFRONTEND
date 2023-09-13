@@ -1,0 +1,65 @@
+
+
+
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+    <h1 class="display-4 fw-medium" style="padding: 1.5%;">Lista de medicamentos</h1>
+</div>
+
+
+<div class="container text-center" >
+  
+
+    
+    
+        <table class="table table-dark table-striped">
+          
+          <thead>
+            <tr>
+              <th scope="col">Generico</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Peso</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr *ngFor="let medicamento of Medicamentos; let i = index"  (click)="MoreInfo(i)">
+                <th scope="row" >{{medicamento.Generico}}</th>
+                <th scope="row" >{{medicamento.Nombre}}</th>
+                <th scope="row" >{{medicamento.Marca}}</th>
+                <th scope="row" >{{medicamento.Peso}}</th>
+            </tr>
+    
+           
+          </tbody>
+    
+        </table>
+    
+        <table class="table table-dark table-striped">
+          
+          <thead>
+            <tr>
+              <th scope="col">Cantidad total</th>
+              <th scope="col">Medida</th>
+              <th scope="col">Fecha de Ingreso</th>
+              <th scope="col">Consumo diario</th>
+              <th scope="col">Código</th>
+              <th scope="col">Observaciones</th>
+              <th scope="col">Derivaciones</th>
+            </tr>
+          </thead>
+         <tbody>
+            <tr *ngFor="let medicamento of Medicamentos">
+                <th scope="row" >{{medicamento.CantidadTotal}}</th>
+                <th scope="row" >{{medicamento.Medida}}</th>
+                <th scope="row" >{{medicamento.FechaInicio}}</th>
+                <th scope="row" >{{medicamento.cantidadDiaria}}</th>
+                <th scope="row" >{{medicamento.Codigo}}</th>
+                <th scope="row" >{{medicamento.Observaciones}}</th>
+                <th scope="row" >{{medicamento.Derivaciones}}</th>
+            </tr>
+         </tbody>
+       
+        </table>
+    
+       
+    </div>

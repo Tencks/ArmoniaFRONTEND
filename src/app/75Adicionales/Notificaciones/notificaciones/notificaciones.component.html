@@ -1,0 +1,9 @@
+<div class="notificaciones">
+    <div *ngFor="let notificacion of notificaciones; let i = index" class="notificacion card" [ngClass]="notificacion.estilo">
+      <div class="card-body">
+        <span class="card-text">{{ notificacion.mensaje }}</span>
+        <button *ngIf="notificacion.abierta" (click)="cerrarNotificacion(i)" class="btn-close position-absolute top-0 end-0" aria-label="Cerrar" style="font-size: .75rem;margin-top:1px;margin-right: 2px;"></button>
+      </div>
+    </div>
+    
+  </div>

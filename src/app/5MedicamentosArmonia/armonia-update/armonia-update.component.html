@@ -1,0 +1,82 @@
+
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+    <h1 class="display-4 fw-medium" style="padding: 1.5%;">Actualizar datos de Armonia</h1>
+</div>
+
+
+
+  <div class="container"  *ngIf="Local">
+    <form [formGroup]="ArmoniaForm" >
+    
+      <mat-horizontal-stepper [linear]="true" [orientation]="orientation" [selectedIndex]="currentStep">
+    
+  
+          <mat-step [completed]="currentStep >=0">
+      <ng-template matStepLabel>Datos de Armonia</ng-template>
+      <!-- Primera etapa -->
+      <!-- Aquí coloca los campos correspondientes al residente -->
+     
+      <div class="row">
+        <div class="col">
+          <mat-label>Nombre</mat-label>
+          <input type="text" class="form-control"  aria-label="Nombre" formControlName="nombre">
+        </div>
+        <div class="col">
+          <mat-label>Cuil</mat-label>
+          <input type="text" class="form-control" aria-label="Apellido" formControlName="cuil" >
+        </div>
+      </div>
+  
+      <hr class="mx-n3">
+  
+      <div class="row">
+        <div class="col">
+          <mat-label>Fecha de creación</mat-label>
+          <input type="date" class="form-control"  formControlName="fechaCreacion">
+        </div>
+        <div class="col">
+          <mat-label>Número telefónico </mat-label>
+          <input type="text" class="form-control" formControlName="numeroTelefonico" >
+        </div>
+      </div>
+  
+      <hr class="mx-n3">
+
+      <div class="row">
+        <div class="col">
+          <mat-label>Localidad</mat-label>
+          <input type="text" class="form-control"  formControlName="localidad">
+        </div>
+        <div class="col">
+          <mat-label>Domicilio</mat-label>
+          <input type="text" class="form-control" formControlName="domicilio" >
+        </div>
+      </div>
+  
+      <hr class="mx-n3">
+  
+      <div class="row">
+        <div class="col">
+          <mat-label>Foto del usuario </mat-label>
+          <img *ngIf="Local.foto" [src]="Local.foto" class="img-preview" alt="Foto del usuario">
+          <input type="file" class="form-control" id="foto" formControlName="foto" (change)="onFileSelected($event)" accept="image/jpeg, image/jpg">
+             <img *ngIf="ArmoniaForm.value.fotoUser" [src]="ArmoniaForm.value.foto" class="img-preview" alt="Foto del residente">  
+        </div>
+      </div>
+    
+      <hr class="mx-n3">
+    
+      <div>
+         
+          <button mat-button (click)="onUpdateLocal()">Enviar</button>
+      </div>
+      
+          </mat-step>
+       
+        
+      </mat-horizontal-stepper>
+    </form>
+     
+     
+  </div>
+  

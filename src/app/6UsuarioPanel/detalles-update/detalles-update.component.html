@@ -1,0 +1,122 @@
+
+<div class="row w-110 text-center bg-warning" style="margin-bottom: 2.6vh;">
+    <h1 class="display-4 fw-medium" style="padding: 1.5%;">Actualizar datos del usuario</h1>
+</div>
+
+
+
+  <div class="container"  *ngIf="userDatos">
+    <form [formGroup]="userForm" >
+    
+      <mat-horizontal-stepper [linear]="true" [orientation]="orientation" [selectedIndex]="currentStep">
+      
+    
+          <mat-step [completed]="currentStep >=0">
+          <ng-template matStepLabel>Datos extras</ng-template>
+          <!-- Segunda etapa -->
+          <!-- Aquí coloca los campos correspondientes al familiar -->
+  
+        <div class="container h-100">
+          <div class="row">
+            <div class="col">
+              <mat-label>Domicilio</mat-label>
+              <input type="text" class="form-control" formControlName="direccion">
+            </div>
+            <div class="col">
+                <mat-label>Número de celular</mat-label>
+                <input type="text" class="form-control"  formControlName="numCelular">
+              </div>
+          </div>
+  
+          <hr class="mx-n3">
+
+          <div class="row">
+            <div class="col">
+                <mat-label>Desripción</mat-label>
+                <textarea class="form-control" rows="3"  formControlName="descriptionUser"></textarea>
+              </div>
+          </div>
+     
+          <hr class="mx-n3">
+  
+        </div>
+  
+        <div>
+          <button mat-button (click)="previousStep()">Anterior</button>
+          <button mat-button (click)="nextStep()">Siguiente</button>
+      </div>
+          </mat-step>
+  
+  
+          <mat-step [completed]="currentStep >=1">
+      <ng-template matStepLabel>Datos principales</ng-template>
+      <!-- Primera etapa -->
+      <!-- Aquí coloca los campos correspondientes al residente -->
+  
+
+
+
+
+
+     
+      <div class="row">
+        <div class="col">
+          <mat-label>Nombre de usuario</mat-label>
+          <input type="text" class="form-control"  aria-label="Nombre" formControlName="username">
+        </div>
+        <div class="col">
+          <mat-label>Contraseña</mat-label>
+          <input type="text" class="form-control" aria-label="Apellido" formControlName="password" >
+        </div>
+      </div>
+  
+      <hr class="mx-n3">
+  
+      <div class="row">
+        <div class="col">
+          <mat-label>Fecha de cumpleaños</mat-label>
+          <input type="date" class="form-control"  formControlName="birthday">
+        </div>
+        <div class="col">
+          <mat-label>Correo electrónico</mat-label>
+          <input type="email" class="form-control" formControlName="email" >
+        </div>
+      </div>
+  
+      <hr class="mx-n3">
+  
+      <div class="row">
+        <div class="col">
+  
+            <mat-label>Selección de cargo </mat-label>
+            <select class="form-select" aria-label="Default select example"  formControlName="cargo" >
+                <option *ngFor="let option of cargoClass" [value]="option.value">{{option.label}}</option>
+            </select>     
+    
+          </div>
+        <div class="col">
+  
+          <mat-label>Foto del usuario </mat-label>
+          <img *ngIf="userDatos.fotoUser" [src]="userDatos.fotoUser" class="img-preview" alt="Foto del usuario">
+          <input type="file" class="form-control" id="fotoUser" formControlName="fotoUser" (change)="onFileSelected($event)" accept="image/jpeg, image/jpg">
+             <img *ngIf="userForm.value.fotoUser" [src]="userForm.value.fotoUser" class="img-preview" alt="Foto del residente">  
+  
+        </div>
+      </div>
+    
+      <hr class="mx-n3">
+    
+      <div>
+          <button mat-button (click)="previousStep()">Anterior</button>
+          <button mat-button (click)="onUpdateUser()">Enviar</button>
+      </div>
+      
+          </mat-step>
+       
+        
+      </mat-horizontal-stepper>
+    </form>
+     
+     
+  </div>
+  

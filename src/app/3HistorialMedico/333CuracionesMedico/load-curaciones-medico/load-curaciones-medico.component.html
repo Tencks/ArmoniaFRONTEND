@@ -1,0 +1,71 @@
+
+
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+  <h1 class="display-4 fw-medium" style="padding: 1.5%;">Agregar Curación</h1>
+</div>
+
+
+<div class="container">
+  <form [formGroup]="LoadCuracionForm"  (ngSubmit)="OnLoadCuracion(LoadCuracionForm.value)">
+  
+    <mat-horizontal-stepper linear>
+      <mat-step>
+        <ng-template matStepLabel>Curación/Inyectable</ng-template>
+        <!-- Primera etapa -->
+        <!-- Aquí coloca los campos correspondientes al residente -->
+
+
+        <div class="container h-100">
+            <div class="row">
+              <div class="col">
+                <mat-label>Al residente asignado</mat-label>
+                <select class="form-select" formControlName="residenteC">
+                    <option *ngFor="let residente of residentes" [value]="residente.id">{{ residente.nombreResidente }}</option>
+                  </select>
+              </div>
+              <div class="col">
+                <mat-label>Fecha de Realización</mat-label>
+                <input type="date" class="form-control" formControlName="fechaRealizada" >
+              </div>
+            </div>
+    
+            <hr class="mx-n3">
+      
+            <div class="container h-100">
+                <div class="row">
+                  <div class="col">
+                    <mat-label>Medicamento Aplicado</mat-label>
+                    <input type="text" class="form-control" placeholder="Coloque la medicación aplicada" formControlName="medicacionAplicada" />
+                  </div>
+                </div>
+             </div>
+
+             <hr class="mx-n3">
+
+             <div class="container h-100">
+                <div class="row">
+                  <div class="col">
+                    <mat-label>profesional</mat-label>
+                    <input type="text" class="form-control" placeholder="el nombre de la persona que la colocó" formControlName="profesional" />
+                  </div>
+                </div>
+             </div>
+
+
+            </div>
+              <div>
+                <button mat-button >Cargar</button>
+              </div>
+  
+      </mat-step>
+  
+   
+
+    </mat-horizontal-stepper>
+  </form>
+   
+   
+</div>
+
+
+
