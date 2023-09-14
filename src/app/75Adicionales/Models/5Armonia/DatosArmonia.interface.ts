@@ -11,6 +11,7 @@ export interface getLocalDataI{
 
 export interface LoadMedicamentoLocalI{
     localA:string;
+    id:string|number;
     genericMedicamento:string;
     nombreMedicamento:string;
     marcaMedicamento:string;
@@ -25,7 +26,6 @@ export interface LoadMedicamentoLocalI{
     codMedicamento:string;
     observacionesMedicamento:string;
     derivacionesMedicamento:string;
-
 };
 
 
@@ -34,6 +34,7 @@ export interface listaMedicamentosLocalI{
    
     localMedicamentos: 
     {
+        id:string|number;
         Generico: string;
         Nombre: string;
         Marca: string;

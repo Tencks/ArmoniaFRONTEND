@@ -85,7 +85,7 @@
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          <tr *ngFor="let medicamento of Medicamentos">
+          <tr *ngFor="let medicamento of Medicamentos, let i = index"  (click)="MoreInfo(i)">
               <th scope="row" >{{medicamento.Generico}}</th>
               <th scope="row" >{{medicamento.Nombre}}</th>
               <th scope="row" >{{medicamento.Marca}}</th>

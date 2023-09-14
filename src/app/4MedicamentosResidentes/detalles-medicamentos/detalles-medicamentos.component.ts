@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificacionesServiceService } from 'src/app/75Adicionales/751Service/752NotificacionesService/notificaciones-service.service';
 import { ApiService } from 'src/app/75Adicionales/751Service/api.service';
 import { DetallesPacienteI, listaResidentesI } from 'src/app/75Adicionales/Models/2Residentes/Residentes.interface';
-import { listaMedicamentosI } from 'src/app/75Adicionales/Models/4Medicamentos/Medicamentos.interface';
+import { LoadMedicamentoI, listaDeleteMedicamentosI, listaMedicamentosI } from 'src/app/75Adicionales/Models/4Medicamentos/Medicamentos.interface';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +19,7 @@ export class DetallesMedicamentosComponent implements OnInit{
   pacientes:DetallesPacienteI | undefined;
 
 
-constructor(private api:ApiService, private router:Router,private activaterouter:ActivatedRoute){}
+constructor(private api:ApiService, private router:Router,private activaterouter:ActivatedRoute, private notificacionesService:NotificacionesServiceService){}
 
 ngOnInit(): void {
 
@@ -55,7 +56,7 @@ ngOnInit(): void {
 
 
   
-
+// UNA JOYITA QUE TE MUESTRA LOS DATOS EXTRAS DE CADA MEDICAMENTO Y PERMITE ACTUALIZAR O ELIMINARL
 
 MoreInfo(index: number){
 
@@ -337,12 +338,21 @@ MoreInfo(index: number){
                       title: 'Actualizar Medicamento',
                       text: `Se actualizó con éxito el medicamento`,
                       confirmButtonText: 'Aceptar',
+                    }).then((result)=>{
+                      if(result.isConfirmed){
+                          
+                        this.api.setMedicamentoID(id)
+                        this.api.UpdateMedicamento(updateData).subscribe(data =>{
+                        console.log(data,'ya paso por el api')
+                        this.notificacionesService.agregarNotificacion(notificacion,'green-bg')
+                        window.location.reload(); //RECARGA LA PAGINA ACTUAL
+    
+                      })
+
+                      }  
                     })
                   }
-                    this.api.setMedicamentoID(id)
-                  this.api.UpdateMedicamento(updateData).subscribe(data =>{
-                    console.log(updateData,'ya paso por el api')
-                  })
+                  
                 }
                 
               }
@@ -370,6 +380,18 @@ MoreInfo(index: number){
       }).then((result)=>{
         if(result.isConfirmed){
           // Realiza la solicitud al backend para eliminar el medicamento
+          const notificacion = `Se ha eliminado con éxito el medicamento`;
+          if (medicamento){
+            let data:any= this.Medicamentos;
+            const id = medicamento.id;
+            this.api.setMedicamentoID(id)
+            this.api.DeleteMedicamento(data).subscribe((datos)=>{
+              console.log(datos);
+              this.router.navigate(['homeMedicamentos'])
+            })
+          }
+          this.notificacionesService.agregarNotificacion(notificacion, 'red-bg')
+
         }
 
 
@@ -381,9 +403,6 @@ MoreInfo(index: number){
   })
 
 }
-
-
-
 
 
 }

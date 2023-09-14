@@ -126,10 +126,16 @@ UpdateMedicamento(updatedData: any):Observable<any>{
   return this.http.put<any>(direccion, updatedData);
 }
 
-
-
-
-
+DeleteMedicamento(form:listaMedicamentosI):Observable<ResponseI>{
+  let direccion = this.urlApi + "medicamentosresidente/" + this.medicamentoID + "/" 
+  let Options = {
+    headers : new HttpHeaders({
+      'Content-type':'aplication/json'
+    }),
+    body:form
+  }
+  return this.http.delete<ResponseI>(direccion,Options)
+}
 
 
 
@@ -222,6 +228,24 @@ getMedicationLocal():Observable <listaMedicamentosLocalI>{
   let direccion = this.urlApi + 'local/1/localMedicamentos/'
   return this.http.get<listaMedicamentosLocalI>(direccion)
 }
+
+UpdateMedicamentoLocal(updatedData: any):Observable<any>{
+  let direccion = this.urlApi + 'medicamentoslocales/' + this.medicamentoID + "/"
+
+  return this.http.put<any>(direccion, updatedData);
+}
+DeleteMedicametoLocal(form:LoadMedicamentoLocalI):Observable<ResponseI>{
+  let direccion = this.urlApi + 'medicamentoslocales/' + this.medicamentoID + "/"
+  let Options = {
+    headers : new HttpHeaders({
+      'Content-type':'aplication/json'
+    }),
+    body:form
+  }
+  return this.http.delete<ResponseI>(direccion,Options)
+}
+
+
 
 
 

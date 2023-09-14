@@ -91,7 +91,7 @@ export class LoadMedicamentoComponent implements OnInit{
           }).then(() =>{
 
             this.notificacionesService.agregarNotificacion(notificacion,'green-bg')
-            this.router.navigate([''])
+            this.router.navigate(['homeMedicamentos'])
           })
 
           

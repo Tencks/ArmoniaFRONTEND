@@ -41,4 +41,25 @@ export interface listaMedicamentosI{
       }[];
    
 }
+export interface listaDeleteMedicamentosI{
+   
+
+        Generico: string;
+        Nombre: string;
+        Marca: string;
+        Peso: string;
+        Medida: string;
+
+        cantidadDiaria: number;
+        FechaInicio: string;
+        CantidadTotal:number;
+        cantidadDisponible:number;
+        
+        Codigo: string;
+        Observaciones: string;
+        Derivaciones: string;
+        id:string|number;
+ 
+   
+}
 
