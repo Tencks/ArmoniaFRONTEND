@@ -15,7 +15,7 @@ export interface LoadMedicamentoI{
     codMedicamento:string;
     observacionesMedicamento:string;
     derivacionesMedicamento:string;
-
+    id:string|number;
 };
 
 
@@ -37,6 +37,7 @@ export interface listaMedicamentosI{
         Codigo: string;
         Observaciones: string;
         Derivaciones: string;
+        id:string|number;
       }[];
    
 }

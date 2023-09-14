@@ -19,6 +19,7 @@ export class ApiService {
   private urlApi =  'http://127.0.0.1:8000/api/';
   private pacienteID: DetallesPacienteI[] = [];
   private userID : getUserDataI[] =[];
+  private medicamentoID : LoadMedicamentoI[] =[];
 
   constructor(private http: HttpClient, private notificaionesService: NotificacionesServiceService) {  }
 
@@ -111,6 +112,28 @@ getMedicamentos():Observable<listaMedicamentosI>{
   let direccion = this.urlApi + "residentes/" + this.pacienteID + "/" + "medicamentos/"
   return this.http.get<listaMedicamentosI>(direccion);
 }
+
+//# METODOS PARA EDITAR Y ELIMINAR UN MEDICAMENTO
+
+setMedicamentoID(id : any){
+  this.medicamentoID = id;
+}
+
+
+UpdateMedicamento(updatedData: any):Observable<any>{
+  let direccion = this.urlApi + "medicamentosresidente/" + this.medicamentoID + "/"
+
+  return this.http.put<any>(direccion, updatedData);
+}
+
+
+
+
+
+
+
+
+
 
 
 //# METODOS PARA LAS OBSERVACIONES SEMANALES
