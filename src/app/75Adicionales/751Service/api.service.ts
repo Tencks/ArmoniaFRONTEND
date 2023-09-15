@@ -16,7 +16,7 @@ import { NotificacionesServiceService } from './752NotificacionesService/notific
 export class ApiService {
 
 
-  private urlApi =  'http://127.0.0.1:8000/api/';
+  private urlApi =  'https://drf-testeando-para-practicas.onrender.com/api/';
   private pacienteID: DetallesPacienteI[] = [];
   private userID : getUserDataI[] =[];
   private medicamentoID : LoadMedicamentoI[] =[];
