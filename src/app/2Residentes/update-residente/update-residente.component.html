@@ -3,7 +3,7 @@
 </div>
 
 <div class="container">
-  <form [formGroup]="LoadRForm" >
+  <form [formGroup]="LoadRForm" *ngIf="Residente">
   
     <mat-horizontal-stepper [linear]="true" [orientation]="orientation" [selectedIndex]="currentStep">
     
@@ -186,18 +186,28 @@
     <div class="row">
 
         <div class="col">
-            <mat-label>Foto del residente</mat-label>
-            <!-- Muestra la imagen actual -->
-            <img *ngIf="LoadRForm.value.fotoResidente" [src]="LoadRForm.value.fotoResidente" class="img-preview" alt="Foto del residente">
-            
-            <!-- Input para cargar una nueva foto -->
+            <mat-label>Cargar foto al residente</mat-label>
             <input type="file" class="form-control" id="fotoResidente" (change)="onFileSelected($event)" accept="image/jpeg, image/jpg">
-            <button mat-button [disabled]="!LoadRForm.value.fotoResidente" (click)="confirmImage()">Confirmar Foto</button>
+            
           </div>
           
 
     </div>
   
+    <hr class="mx-n3">
+
+    <div class="row">
+      <div class="col">
+        <mat-label>Foto actual </mat-label>
+        <img *ngIf="Residente.fotoResidente" [src]="Residente.fotoResidente" class="img-preview text-center" alt="Foto actual del residente">
+      </div>
+      <div class="col">
+        <mat-label style="margin-right: 2%;">Vista previa</mat-label>
+          <!-- Muestra la imagen actual -->
+          <img *ngIf="LoadRForm.value.fotoResidente" [src]="LoadRForm.value.fotoResidente" class="img-preview" alt="Foto del residente">
+      </div>
+    </div>
+
     <hr class="mx-n3">
 
     <div>

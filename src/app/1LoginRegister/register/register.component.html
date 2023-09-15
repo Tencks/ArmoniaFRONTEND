@@ -33,12 +33,16 @@
                   </div>
   
                   <div class="form-outline mb-4">
-                     <label class="form-label" for="form3Example4cdg">Seleccione su cargo</label>
-                     <select class="form-select" aria-label="Default select example" formControlName="cargo"> 
-                       <option *ngFor="let option of cargoClass" [value]="option.value">{{option.label}}</option>
-                     </select>
-                 </div>
-  
+                    <label class="form-label" for="form3Example4cdg">Seleccione su cargo</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="cargo">
+                      <ng-container *ngIf="usuariosCreados; else noUsuarios">
+                        <option *ngFor="let option of cargoClass; let first = first" [value]="option.value" [disabled]="!first">{{ option.label }}</option>
+                      </ng-container>
+                      <ng-template #noUsuarios>
+                        <option *ngFor="let option of cargoClass" [value]="option.value">{{ option.label }}</option>
+                      </ng-template>
+                    </select>
+                  </div>
                   
   
                   <div class="d-flex justify-content-center">

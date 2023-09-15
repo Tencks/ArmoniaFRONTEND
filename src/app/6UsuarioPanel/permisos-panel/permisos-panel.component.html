@@ -1,0 +1,39 @@
+
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
+    <h1 class="display-4 fw-medium" style="padding: 1.5%;">Permisos</h1>
+</div>
+
+
+
+   <!-- Detalles de cada residente -->
+                 
+                    
+        <div class="container text-center">
+            <div class="table-responsive">
+                <table class="table table-dark table-striped">
+                  <thead >
+                    <tr >
+                      <th scope="col">Usuario</th>
+                      <th scope="col">Correo electrónico</th>
+                      <th scope="col">Cargo</th>
+                      
+                     
+                    </tr>
+                  </thead>
+                  <tbody class="table-group-divider">
+                    <tr  *ngFor="let UsersData of UsersData; let i = index"  (click)="MoreInfo(i)">
+                      <th scope="row" >{{UsersData.username}}</th>
+                      <td>{{UsersData.email}}</td>
+                      <td>{{UsersData.cargo}}</td>
+                      
+                  
+                    </tr>
+                
+                  </tbody>
+            
+                 
+            
+            
+                </table>  
+               </div>
+        </div>

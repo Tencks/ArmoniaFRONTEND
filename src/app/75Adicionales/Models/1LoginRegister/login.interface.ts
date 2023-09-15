@@ -31,4 +31,13 @@ export interface ResponseI{
 }
 
 
+export interface listaUsersDataI{
+    id:string|number;
+    cargo:string;
+    email:string;
+    username:string;
+    password:string;
+}
+
+
 

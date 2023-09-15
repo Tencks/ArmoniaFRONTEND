@@ -79,7 +79,24 @@ export class LoadMedicamentoComponent implements OnInit{
         console.log(newMedicamento)
         if (newMedicamento){
 
-          const residenteNombreCompleto = `${form.residenteM}`;
+
+
+                // Itera a través de los elementos del formulario
+                for (const residente of this.residentes) {
+                                    
+                  // Verifica que el elemento sea un input o un select
+                  const nombre = residente.nombreResidente;
+                  const apellido = residente.apellidoResidente;
+
+                  if (nombre && apellido) {
+                    // Agrega el valor al objeto utilizando el nombre del campo como clave
+                    const residenteNombreCompleto = `${nombre} ${apellido}`;
+
+
+
+
+
+        
           const medicamento = `${form.nombreMedicamento}`
           const notificacion = `Se ha agregado con éxito el medicamento ${medicamento} a ${residenteNombreCompleto}`;
 
@@ -94,7 +111,8 @@ export class LoadMedicamentoComponent implements OnInit{
             this.router.navigate(['homeMedicamentos'])
           })
 
-          
+        }
+      } 
         }
       })
   

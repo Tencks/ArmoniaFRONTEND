@@ -20,6 +20,7 @@ import { LoadMedicamentosArmoniaComponent } from './5MedicamentosArmonia/55Medic
 import { DetallesUpdateComponent } from './6UsuarioPanel/detalles-update/detalles-update.component';
 import { ArmoniaUpdateComponent } from './5MedicamentosArmonia/armonia-update/armonia-update.component';
 import { UpdateResidenteComponent } from './2Residentes/update-residente/update-residente.component';
+import { PermisosPanelComponent } from './6UsuarioPanel/permisos-panel/permisos-panel.component';
 
 
 // LOGICA DEL RUTEO DE LA APP
@@ -59,7 +60,8 @@ const routes: Routes = [
 
   // PANEL DEL USUARIO CONECTADO
   {path:'usuarioPanel',component:HomeDetallesUsuarioComponent},
-  {path:'UpdateUser', component:DetallesUpdateComponent}
+  {path:'UpdateUser', component:DetallesUpdateComponent},
+  {path:'PermisosPanel', component:PermisosPanelComponent}
 
 ];
 

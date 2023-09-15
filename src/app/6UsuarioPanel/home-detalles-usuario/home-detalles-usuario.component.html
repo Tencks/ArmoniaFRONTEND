@@ -5,7 +5,7 @@
 
     <div class="container" *ngIf="userDatos">
         <div class="row gutters">
-          <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+          <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" style="margin-bottom: 2%;">
             <div class="card h-100">
               <div class="card-body">
                 <div class="account-settings">
@@ -23,9 +23,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>   
           </div>
-          <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+
+
+          <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12" style="margin-bottom: 2%;">
             <div class="card h-100">
               <div class="card-body">
                 <div class="row gutters">
@@ -87,6 +89,9 @@
                     <div class="text-right">
                       <button type="button" class="btn btn-primary" (click)="onUpdateDatos()" style="margin-right: 1%;">
                         Actualizar datos
+                      </button>
+                      <button *ngIf="cargoUsuario === '4'" class="btn btn-success" style="margin-right: 1%;" (click)="VerPermisos()">
+                        Ver Permisos
                       </button>
                       <button class="btn btn-danger" (click)="onLogout()">
                         Desconectarse

@@ -20,7 +20,7 @@
               <div class="col">
                 <mat-label>Al residente asignado</mat-label>
                 <select class="form-select" formControlName="residenteC">
-                    <option *ngFor="let residente of residentes" [value]="residente.id">{{ residente.nombreResidente }}</option>
+                    <option *ngFor="let residente of residentes" [value]="residente.id">{{ residente.nombreResidente }}&nbsp;{{residente.apellidoResidente}}</option>
                   </select>
               </div>
               <div class="col">

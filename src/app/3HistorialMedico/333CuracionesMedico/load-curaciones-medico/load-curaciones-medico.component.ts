@@ -46,7 +46,23 @@ export class LoadCuracionesMedicoComponent implements OnInit {
         let Curacion:LoadCuracionI = data2;
         console.log(Curacion)
         if (Curacion != null){
-          const residenteNombreCompleto = `${form.residenteC}`;
+
+
+              // Itera a través de los elementos del formulario
+              for (const residente of this.residentes) {
+                      
+                // Verifica que el elemento sea un input o un select
+                const nombre = residente.nombreResidente;
+                const apellido = residente.apellidoResidente;
+
+                if (nombre && apellido) {
+                  // Agrega el valor al objeto utilizando el nombre del campo como clave
+                  const residenteNombreCompleto = `${nombre} ${apellido}`;
+
+
+
+
+         
           const medicamento = `${form.medicacionAplicada}`
           const notificacion = `Se ha aplicado ${medicamento} con éxito a ${residenteNombreCompleto}`;
 
@@ -62,6 +78,8 @@ export class LoadCuracionesMedicoComponent implements OnInit {
             this.router.navigate(['homeMedico'])
           })
           
+        }
+      }
         }
       })
   

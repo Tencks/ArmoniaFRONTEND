@@ -23,8 +23,8 @@ export class LoadObservacionesMedicoComponent implements OnInit {
   
   
     ngOnInit(): void {
-      this.api.getAllResidents().subscribe(data =>{
-        this.residentes = data;
+      this.api.getAllResidents().subscribe(residentes =>{
+        this.residentes = residentes;
       })
       
       this.LoadSemanalOForm = this.fomBuilder.group({
@@ -48,33 +48,45 @@ export class LoadObservacionesMedicoComponent implements OnInit {
       this.api.LoadNewSemanalO(form).subscribe(data2 =>{
         let SemanalO:LoadSemanalOI = data2;
         console.log(SemanalO)
-        if (SemanalO != null){
+        if (SemanalO != null)
+      
+        {
 
-          const residenteNombreCompleto = `${form.residenteS}`;
-          const notificacion = `Se ha agregado con éxito la observación semanal a ${residenteNombreCompleto}`;
+          // Itera a través de los elementos del formulario
+          for (const residente of this.residentes) {
+           
+             // Verifica que el elemento sea un input o un select
+             const nombre = residente.nombreResidente;
+             const apellido = residente.apellidoResidente;
+
+             if (nombre && apellido) {
+               // Agrega el valor al objeto utilizando el nombre del campo como clave
+               const residenteNombreCompleto = `${nombre} ${apellido}`;
+        
 
 
-          Swal.fire({
-            icon: 'success',
-            title: 'Agregar Observación',
-            text: `Se ha agregado con éxito la observación semanal a ${residenteNombreCompleto}`,
-            
-          }).then(()=>{
+const notificacion = `Se ha agregado con éxito la observación semanal a ${residenteNombreCompleto}`;
 
-            this.notificacionesService.agregarNotificacion(notificacion,'green-bg')
-            this.router.navigate(['homeMedico'])
-          })
-          
-        }
-      })
+
+Swal.fire({
+icon: 'success',
+title: 'Agregar Observación',
+text: `Se ha agregado con éxito la observación semanal a ${residenteNombreCompleto}`,
+
+}).then(()=>{
+
+this.notificacionesService.agregarNotificacion(notificacion,'green-bg')
+this.router.navigate(['homeMedico'])
+})
+
+}
+
+}
+}
   
   
+      }
+    
   
-  
-    }
-  
-  
-  
-  
-  }
-  
+  )}
+}

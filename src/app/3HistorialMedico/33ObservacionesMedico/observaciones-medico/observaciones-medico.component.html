@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr *ngFor="let observa of SemanalOb">
+        <tr *ngFor="let observa of SemanalOb; let i = index"  (click)="MoreInfo(i)">
             <th scope="row" >Revisión de la semana</th>
             <th scope="row" >{{observa.FechaConsulta}}</th>
             <th scope="row" >{{observa.Observaciones}}</th>

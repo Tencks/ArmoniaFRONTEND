@@ -5,7 +5,7 @@ import { DetallesPacienteI, listaResidentesI, loadResidentesI } from '../Models/
 import { LoadMedicamentoI, listaMedicamentosI } from '../Models/4Medicamentos/Medicamentos.interface';
 import { LoadSemanalOI, listaSemanalOI } from '../Models/3Medico/ObservacionesSemanal.interface';
 import { LoadMedicamentoLocalI, getLocalDataI, getUserDataI, listaMedicamentosLocalI } from '../Models/5Armonia/DatosArmonia.interface';
-import { LoginI, RegisterI, ResponseI, TokenI } from '../Models/1LoginRegister/login.interface';
+import { LoginI, RegisterI, ResponseI, TokenI, listaUsersDataI } from '../Models/1LoginRegister/login.interface';
 import { LoadCuracionI, listaCuracionesI } from '../Models/3Medico/Curaciones.interface';
 import { NotificacionesServiceService } from './752NotificacionesService/notificaciones-service.service';
 
@@ -201,6 +201,30 @@ updateUserData(updatedData: any): Observable<any> {
   return this.http.put<any>(direccion, updatedData, { headers });
 }
 
+getUsersData():Observable<listaUsersDataI[]>{
+  let direccion = this.urlApi + "userData/"
+  return this.http.get<listaUsersDataI[]>(direccion)
+}
+
+UpdateUsersData(updatedData: any):Observable<any>{
+  let direccion = this.urlApi + "userData/" + this.userID + "/"
+  return this.http.put<any>(direccion,updatedData)
+}
+
+DeleteUser(form:getUserDataI):Observable<ResponseI>{
+  let direccion = this.urlApi + "userData/" + this.userID + "/"
+  let Options = {
+    headers : new HttpHeaders({
+      'Content-type':'aplication/json'
+    }),
+    body:form
+  }
+    return this.http.delete<ResponseI>(direccion,Options)
+}
+
+
+
+
 
 
 
@@ -279,7 +303,7 @@ checkMedicationResidenteStatus(): void {
         const Medicamento = `${medicamento.medicamento}`;
         const Agotado = `${medicamento.fechaAgotamiento}`;
 
-        const notificacion = `Advertencia: A ${ResidenteNombre} se le agotará el medicamento: ${Medicamento} el día ${Agotado}`;
+        const notificacion = `Advertencia: A ${ResidenteNombre} se le agotará el medicamento: ${Medicamento} a partir del día ${Agotado}`;
 
        // Verificar si esta notificación ya se generó
             const notificacionKey = `${ResidenteNombre}-${Medicamento}`;
@@ -295,8 +319,6 @@ checkMedicationResidenteStatus(): void {
 }
   });
 }
-
-
 
 checkMedicationLocalStatus(): void {
   let direccion = this.urlApi + 'local/1/localMedicamentos/status';
@@ -315,7 +337,7 @@ checkMedicationLocalStatus(): void {
         const Medicamento = `${medicamentoLocal.medicamento}`;
         const Agotado = `${medicamentoLocal.fechaAgotamiento}`;
 
-        const notificacion = `Advertencia: En las reservas de ${Local} se está por agotar el medicamento: ${Medicamento} el día ${Agotado}`;
+        const notificacion = `Advertencia: En las reservas de ${Local} se está por agotar el medicamento: ${Medicamento} a partir del día ${Agotado}`;
 
         this.notificaionesService.agregarNotificacion(notificacion,'red-bg')
 

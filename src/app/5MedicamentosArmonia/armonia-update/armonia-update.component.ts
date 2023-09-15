@@ -69,7 +69,7 @@ export class ArmoniaUpdateComponent implements OnInit{
       this.ArmoniaForm.patchValue({
        
         nombre: Local.nombre ,
-        foto: Local.foto ,
+        
         localidad: Local.localidad ,
         domicilio: Local.domicilio ,
         cuil: Local.cuil ,

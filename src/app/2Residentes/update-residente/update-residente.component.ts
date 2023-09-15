@@ -22,6 +22,7 @@ export class UpdateResidenteComponent implements OnInit{
   
     LoadRForm!: FormGroup;
     Residente: DetallesPacienteI | undefined;
+    selectedFile: string | undefined; // Declara la variable selectedFile
   
   constructor(private api:ApiService, private router:Router, private formBuilder: FormBuilder, private notificaionesService: NotificacionesServiceService, private activaterouter: ActivatedRoute){}
   
@@ -89,7 +90,7 @@ export class UpdateResidenteComponent implements OnInit{
         numeroAfiliado: Residente.numeroAfiliado ,
         obraSocial: Residente.obraSocial ,
         vinculoConElResidente: Residente.vinculoConElResidente ,
-        fotoResidente: Residente.fotoResidente ,
+        
       })
 
 

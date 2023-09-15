@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/75Adicionales/751Service/api.service';
 import { CARGO } from 'src/app/75Adicionales/Models/10Tulpas/Tulpa.const';
-import { RegisterI } from 'src/app/75Adicionales/Models/1LoginRegister/login.interface';
+import { RegisterI, listaUsersDataI } from 'src/app/75Adicionales/Models/1LoginRegister/login.interface';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit {
 
+  usuariosCreados: boolean = false;
+
   cargoClass = CARGO;
 
   RegisterForm = new FormGroup({
@@ -21,7 +23,7 @@ export class RegisterComponent implements OnInit {
     username : new FormControl('',Validators.required),
     password : new FormControl('',Validators.required),
     password1 : new FormControl('',Validators.required),
-    cargo : new FormControl('',Validators.required),
+    cargo : new FormControl('0',Validators.required),
     
   })
 
@@ -38,6 +40,17 @@ constructor(private api:ApiService, private router:Router){}
 
   ngOnInit(): void {
       
+ // Llamar al método getUsersData para verificar si existen usuarios
+ this.api.getUsersData().subscribe(
+  (usuarios: listaUsersDataI[]) => {
+    // Si se devuelven usuarios, establecer usuariosCreados en true
+    if (usuarios && usuarios.length > 0) {
+      this.usuariosCreados = true;
+    }
+  }
+ )
+
+
   }
   
   OnRegister(form: RegisterI){

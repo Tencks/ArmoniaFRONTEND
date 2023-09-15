@@ -14,7 +14,7 @@
           <!-- Botón "Alerts" -->
 
               <button type="button" class="btn btn-primary position-relative text-end navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAlerts" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                Alerts <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
+                Alerts <span *ngIf="hayNotificacionesEnLocalStorage()" class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
               </button>
 
         </div>

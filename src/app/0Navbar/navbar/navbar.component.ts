@@ -65,5 +65,12 @@ export class NavbarComponent implements OnInit{
       });
     }
   }
-} 
+
+  hayNotificacionesEnLocalStorage(): boolean {
+    const notificacionesStr = localStorage.getItem('notificaciones');
+    return notificacionesStr ? JSON.parse(notificacionesStr).length > 0 : false;
+  }
+}
+
+ 
   

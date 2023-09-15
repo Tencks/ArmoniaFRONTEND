@@ -39,6 +39,7 @@ import { ArmoniaUpdateComponent } from './5MedicamentosArmonia/armonia-update/ar
 import { UpdateResidenteComponent } from './2Residentes/update-residente/update-residente.component';
 import { UpdateMedicamentoComponent } from './4MedicamentosResidentes/44Medicamentos/update-medicamento/update-medicamento.component';
 import { UpdateMedicamentoArmoniaComponent } from './5MedicamentosArmonia/55Medicamentos/update-medicamento-armonia/update-medicamento-armonia.component';
+import { PermisosPanelComponent } from './6UsuarioPanel/permisos-panel/permisos-panel.component';
 
 
 
@@ -70,6 +71,7 @@ import { UpdateMedicamentoArmoniaComponent } from './5MedicamentosArmonia/55Medi
     UpdateResidenteComponent,
     UpdateMedicamentoComponent,
     UpdateMedicamentoArmoniaComponent,
+    PermisosPanelComponent,
   ],
   imports: [
     BrowserModule,

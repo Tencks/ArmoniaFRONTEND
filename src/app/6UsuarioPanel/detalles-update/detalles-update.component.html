@@ -1,5 +1,5 @@
 
-<div class="row w-110 text-center bg-warning" style="margin-bottom: 2.6vh;">
+<div class="row w-110 text-center bg-info" style="margin-bottom: 2.6vh;">
     <h1 class="display-4 fw-medium" style="padding: 1.5%;">Actualizar datos del usuario</h1>
 </div>
 
@@ -89,18 +89,30 @@
         <div class="col">
   
             <mat-label>Selección de cargo </mat-label>
-            <select class="form-select" aria-label="Default select example"  formControlName="cargo" >
-                <option *ngFor="let option of cargoClass" [value]="option.value">{{option.label}}</option>
+            <select class="form-select" aria-label="Default select example"  formControlName="cargo" [disabled]="true" >
+                <option *ngFor="let option of cargoClass" [disabled]="true" [value]="option.value">{{option.label}}</option>
             </select>     
     
           </div>
         <div class="col">
   
           <mat-label>Foto del usuario </mat-label>
-          <img *ngIf="userDatos.fotoUser" [src]="userDatos.fotoUser" class="img-preview" alt="Foto del usuario">
           <input type="file" class="form-control" id="fotoUser" formControlName="fotoUser" (change)="onFileSelected($event)" accept="image/jpeg, image/jpg">
-             <img *ngIf="userForm.value.fotoUser" [src]="userForm.value.fotoUser" class="img-preview" alt="Foto del residente">  
+        
   
+        </div>
+      </div>
+
+      <hr class="mx-n3">
+
+      <div class="row">
+        <div class="col">
+          <mat-label>Foto actual </mat-label>
+          <img *ngIf="userDatos.fotoUser" [src]="userDatos.fotoUser" class="img-preview text-center" alt="Foto del usuario">
+        </div>
+        <div class="col">
+          <mat-label>Vista previa </mat-label>
+          <img *ngIf="userForm.value.fotoUser" [src]="userForm.value.fotoUser" class="img-preview text-center" alt="Foto del residente">  
         </div>
       </div>
     

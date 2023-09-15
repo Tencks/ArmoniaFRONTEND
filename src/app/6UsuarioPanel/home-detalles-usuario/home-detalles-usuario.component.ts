@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/75Adicionales/751Service/api.service';
 import { TokenI } from 'src/app/75Adicionales/Models/1LoginRegister/login.interface';
 import { getUserDataI, putUserDataI } from 'src/app/75Adicionales/Models/5Armonia/DatosArmonia.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home-detalles-usuario',
@@ -16,6 +17,8 @@ export class HomeDetallesUsuarioComponent implements OnInit{
   putUserDatos:putUserDataI|undefined;
   userForm!: FormGroup;
 
+
+  cargoUsuario: string|null = localStorage.getItem('cargo');
 
 
   constructor(private api:ApiService, private router:Router, private formBuilder: FormBuilder){
@@ -90,4 +93,11 @@ export class HomeDetallesUsuarioComponent implements OnInit{
   }
 
   
+VerPermisos(){
+  this.router.navigate(['PermisosPanel'])
+}
+
+
+
+
 }

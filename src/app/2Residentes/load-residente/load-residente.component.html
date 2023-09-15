@@ -187,13 +187,20 @@
 
       <div class="col">
         <mat-label>Foto del residente</mat-label>
-        <input type="file" class="form-control" id="fotoResidente" formControlName="fotoResidente" (change)="onFileSelected($event)" accept="image/jpeg, image/jpg">
-           <img *ngIf="LoadRForm.value.fotoResidente" [src]="LoadRForm.value.fotoResidente" class="img-preview" alt="Foto del residente">
-           <button mat-button [disabled]="!LoadRForm.value.fotoResidente" (click)="confirmImage()">Confirmar Foto</button>
+        <input type="file" class="form-control" id="fotoResidente" formControlName="fotoResidente" (change)="onFileSelected($event)" accept="image/jpeg, image/jpg">          
       </div>
 
     </div>
   
+    <hr class="mx-n3">
+
+    <div class="row">
+      <div class="col">
+        <mat-label style="margin-right: 2%;">Vista previa</mat-label>
+        <img *ngIf="LoadRForm.value.fotoResidente" [src]="LoadRForm.value.fotoResidente" class="img-preview" alt="Foto del residente">
+      </div>
+    </div>
+
     <hr class="mx-n3">
 
     <div>

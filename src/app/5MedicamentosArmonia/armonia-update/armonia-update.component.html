@@ -57,13 +57,26 @@
   
       <div class="row">
         <div class="col">
-          <mat-label>Foto del usuario </mat-label>
-          <img *ngIf="Local.foto" [src]="Local.foto" class="img-preview" alt="Foto del usuario">
+          <mat-label>Cargar Foto </mat-label>
+          
           <input type="file" class="form-control" id="foto" formControlName="foto" (change)="onFileSelected($event)" accept="image/jpeg, image/jpg">
-             <img *ngIf="ArmoniaForm.value.fotoUser" [src]="ArmoniaForm.value.foto" class="img-preview" alt="Foto del residente">  
+             
         </div>
       </div>
     
+      <hr class="mx-n3">
+
+      <div class="row">
+        <div class="col">
+          <mat-label>Foto de Armonia</mat-label>
+          <img *ngIf="Local.foto" [src]="Local.foto" class="img-preview" alt="Foto de armonia">
+        </div>
+        <div class="col">
+          <mat-label>Nueva foto</mat-label>
+          <img *ngIf="ArmoniaForm.value.foto" [src]="ArmoniaForm.value.foto" class="img-preview" alt="Foto nueva de armonia">  
+        </div>
+      </div>
+
       <hr class="mx-n3">
     
       <div>
