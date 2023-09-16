@@ -34,26 +34,14 @@ export class ApiService {
 
 RegisterUser(form:RegisterI):Observable<RegisterI>{
   let direccion = this.urlApi + "addUser/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.post<RegisterI>(direccion,form,httpOptions)
+ 
+  return this.http.post<RegisterI>(direccion,form )
 }
 
  loginByEmail(form:LoginI):Observable<ResponseI> {
   let direccion = this.urlApi + "login/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.post<ResponseI>(direccion,form,httpOptions);
+ 
+  return this.http.post<ResponseI>(direccion,form );
  }
 
 Logout(form:TokenI):Observable<TokenI>{
@@ -74,14 +62,8 @@ Logout(form:TokenI):Observable<TokenI>{
 
 getAllResidents(): Observable<listaResidentesI[]>{
   let direccion = this.urlApi + "residentes/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.get<listaResidentesI[]>(direccion,httpOptions);
+ 
+  return this.http.get<listaResidentesI[]>(direccion );
 }
 
 
@@ -91,26 +73,14 @@ setPacienteID(id : any){
 
 getResidenteDetails():Observable<DetallesPacienteI>{
   let direccion = this.urlApi + "residentes/" + this.pacienteID
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.get<DetallesPacienteI>(direccion,httpOptions);
+ 
+  return this.http.get<DetallesPacienteI>(direccion );
 }
 
 loadResident(form:loadResidentesI):Observable<loadResidentesI>{
   let direccion = this.urlApi + "residentes/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.post<loadResidentesI>(direccion,form,httpOptions);
+ 
+  return this.http.post<loadResidentesI>(direccion,form );
 }
 
 deleteResident(form:DetallesPacienteI):Observable<ResponseI>{
@@ -128,15 +98,9 @@ deleteResident(form:DetallesPacienteI):Observable<ResponseI>{
 
 updateResident(updateData:any): Observable<any>{
 let direccion = this.urlApi + "residentes/" + this.pacienteID + "/"
-// Crear cabeceras CORS
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-  })
-};
 
-return this.http.put<any>(direccion, updateData,httpOptions)
+
+return this.http.put<any>(direccion, updateData )
 }
 
 
@@ -153,14 +117,8 @@ return this.http.put<any>(direccion, updateData,httpOptions)
 
 LoadNewMedicamento(form:LoadMedicamentoI):Observable<LoadMedicamentoI>{
   let direccion = this.urlApi + "medicamentosresidente/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.post<LoadMedicamentoI>(direccion,form,httpOptions)
+ 
+  return this.http.post<LoadMedicamentoI>(direccion,form )
 }
 
 
@@ -169,14 +127,8 @@ LoadNewMedicamento(form:LoadMedicamentoI):Observable<LoadMedicamentoI>{
 
 getMedicamentos():Observable<listaMedicamentosI>{
   let direccion = this.urlApi + "residentes/" + this.pacienteID + "/" + "medicamentos/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.get<listaMedicamentosI>(direccion,httpOptions);
+ 
+  return this.http.get<listaMedicamentosI>(direccion );
 }
 
 //# METODOS PARA EDITAR Y ELIMINAR UN MEDICAMENTO
@@ -188,15 +140,9 @@ setMedicamentoID(id : any){
 
 UpdateMedicamento(updatedData: any):Observable<any>{
   let direccion = this.urlApi + "medicamentosresidente/" + this.medicamentoID + "/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
+ 
 
-  return this.http.put<any>(direccion, updatedData,httpOptions);
+  return this.http.put<any>(direccion, updatedData );
 }
 
 DeleteMedicamento(form:listaMedicamentosI):Observable<ResponseI>{
@@ -204,7 +150,7 @@ DeleteMedicamento(form:listaMedicamentosI):Observable<ResponseI>{
   let Options = {
     headers : new HttpHeaders({
       'Content-type':'aplication/json',
-      'Origin' : 'http://www.whitenoiseland.com.ar'
+
     }),
     body:form
   }
@@ -220,27 +166,15 @@ DeleteMedicamento(form:listaMedicamentosI):Observable<ResponseI>{
 
 LoadNewSemanalO(form:LoadSemanalOI):Observable<LoadSemanalOI>{
   let direccion = this.urlApi + "observacionessemanales/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.post<LoadSemanalOI>(direccion,form,httpOptions)
+ 
+  return this.http.post<LoadSemanalOI>(direccion,form )
 }
 
 //# METODO PARA MOSTRAR 
 getSemanalO():Observable<listaSemanalOI>{
   let direccion = this.urlApi + "residentes/" + this.pacienteID + "/" + "signosVitales/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.get<listaSemanalOI>(direccion,httpOptions);
+ 
+  return this.http.get<listaSemanalOI>(direccion );
 }
 
 
@@ -248,27 +182,15 @@ getSemanalO():Observable<listaSemanalOI>{
 
 LoadNewCuracion(form:LoadCuracionI):Observable<LoadCuracionI>{
   let direccion = this.urlApi + "curaciones/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.post<LoadCuracionI>(direccion,form,httpOptions)
+ 
+  return this.http.post<LoadCuracionI>(direccion,form )
 }
 
 //# METODO PARA MOSTRAR 
 getCuracion():Observable<listaCuracionesI>{
   let direccion = this.urlApi + "residentes/" + this.pacienteID + "/" + "curaciones/"
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
-  return this.http.get<listaCuracionesI>(direccion,httpOptions);
+ 
+  return this.http.get<listaCuracionesI>(direccion );
 }
 
 
@@ -286,7 +208,7 @@ getUserData():Observable<getUserDataI>{
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${userToken}`,
     'Content-Type' : 'application/json',
-    'Origin' : 'hhtp://www.whitenoiseland.com.ar'
+ 
   })
 
   let direccion = this.urlApi + "userData/" + this.userID + "/"
@@ -299,7 +221,7 @@ updateUserData(updatedData: any): Observable<any> {
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${userToken}`,
     'Content-Type' : 'application/json',
-    'Origin' : 'hhtp://www.whitenoiseland.com.ar'
+
   });
 
   const direccion = this.urlApi + "userData/" + this.userID + "/"
@@ -309,26 +231,14 @@ updateUserData(updatedData: any): Observable<any> {
 
 getUsersData():Observable<listaUsersDataI[]>{
   let direccion = this.urlApi + "userData/"
-    // Crear cabeceras CORS
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-      })
-    };
-  return this.http.get<listaUsersDataI[]>(direccion,httpOptions)
+
+  return this.http.get<listaUsersDataI[]>(direccion )
 }
 
 UpdateUsersData(updatedData: any):Observable<any>{
   let direccion = this.urlApi + "userData/" + this.userID + "/"
-    // Crear cabeceras CORS
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-      })
-    };
-  return this.http.put<any>(direccion,updatedData,httpOptions)
+
+  return this.http.put<any>(direccion,updatedData )
 }
 
 DeleteUser(form:getUserDataI):Observable<ResponseI>{
@@ -336,7 +246,7 @@ DeleteUser(form:getUserDataI):Observable<ResponseI>{
   let Options = {
     headers : new HttpHeaders({
       'Content-type':'aplication/json',
-      'Origin':'http://www.whitenoiseland.com.ar'
+
     }),
     body:form
   }
@@ -354,72 +264,42 @@ DeleteUser(form:getUserDataI):Observable<ResponseI>{
 getLocalData():Observable<getLocalDataI>{
 
   let direccion = this.urlApi + "local/1/"
-    // Crear cabeceras CORS
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-      })
-    };
-  return this.http.get<getLocalDataI>(direccion,httpOptions)
+
+  return this.http.get<getLocalDataI>(direccion )
 }
 
 updateLocalData(updatedData: any):Observable<any>{
 
   let direccion = this.urlApi + "local/1/"
-    // Crear cabeceras CORS
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-      })
-    };
-  return this.http.put<any>(direccion,updatedData,httpOptions)
+    
+  return this.http.put<any>(direccion,updatedData )
 }
 
 loadNewMedicacionLocal(form:LoadMedicamentoLocalI):Observable<LoadMedicamentoLocalI>{
 let direccion = this.urlApi + 'medicamentoslocales/'
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
- return this.http.post<LoadMedicamentoLocalI>(direccion,form,httpOptions)
+ 
+ return this.http.post<LoadMedicamentoLocalI>(direccion,form )
 
 }
 
 getMedicationLocal():Observable <listaMedicamentosLocalI>{
   let direccion = this.urlApi + 'local/1/localMedicamentos/'
-    // Crear cabeceras CORS
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-      })
-    };
-  return this.http.get<listaMedicamentosLocalI>(direccion,httpOptions)
+
+  return this.http.get<listaMedicamentosLocalI>(direccion )
 }
 
 UpdateMedicamentoLocal(updatedData: any):Observable<any>{
   let direccion = this.urlApi + 'medicamentoslocales/' + this.medicamentoID + "/"
-    // Crear cabeceras CORS
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-      })
-    };
 
-  return this.http.put<any>(direccion, updatedData,httpOptions);
+
+  return this.http.put<any>(direccion, updatedData );
 }
 DeleteMedicametoLocal(form:LoadMedicamentoLocalI):Observable<ResponseI>{
   let direccion = this.urlApi + 'medicamentoslocales/' + this.medicamentoID + "/"
   let Options = {
     headers : new HttpHeaders({
       'Content-type':'aplication/json',
-      'Origin' : 'http://www.whitenoiseland.com.ar'
+
     }),
     body:form
   }
@@ -437,13 +317,7 @@ checkMedicationResidenteStatus(): void {
   const notificacionesGeneradas = new Set<string>();
 
 
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
+ 
 
 
 
@@ -455,7 +329,7 @@ checkMedicationResidenteStatus(): void {
     const direccion = `${this.urlApi}residentes/${residente.id}/medicamentos/status`;
 
     // Realiza la solicitud para el residente actual
-    this.http.get<any[]>(direccion,httpOptions).subscribe((data) => {
+    this.http.get<any[]>(direccion ).subscribe((data) => {
       console.log(data);
 
 
@@ -491,20 +365,14 @@ checkMedicationResidenteStatus(): void {
 checkMedicationLocalStatus(): void {
 
 
-  // Crear cabeceras CORS
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://www.whitenoiseland.com.ar' // Agregar tu origen aquí
-    })
-  };
+ 
 
 
 
 
   let direccion = this.urlApi + 'local/1/localMedicamentos/status';
 
-  this.http.get<any[]>(direccion,httpOptions).subscribe((data) => {
+  this.http.get<any[]>(direccion ).subscribe((data) => {
     console.log(data)
 
 
