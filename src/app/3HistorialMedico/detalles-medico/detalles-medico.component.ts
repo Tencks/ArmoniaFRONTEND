@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/75Adicionales/751Service/api.service';
 import { DetallesPacienteI, listaResidentesI } from 'src/app/75Adicionales/Models/2Residentes/Residentes.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalles-medico',
@@ -13,6 +14,8 @@ export class DetallesMedicoComponent implements OnInit {
   pacientes:listaResidentesI[] =[];
   pacienteDetalles:DetallesPacienteI | undefined;
 
+  cargoUsuario = localStorage.getItem('cargo')
+
 
 constructor(private api:ApiService, private router:Router, private activaterouter: ActivatedRoute){}
 
@@ -22,6 +25,15 @@ constructor(private api:ApiService, private router:Router, private activateroute
 
 ngOnInit(): void {
     
+  const token = localStorage.getItem('token')
+    
+  if(!token){
+    this.router.navigate(['login']);
+  }else{
+   
+  }
+
+
   const residenteId = this.activaterouter.snapshot.params['id']; // Obtén el ID del residente desde los parámetros de la URL
 
   if (residenteId) {
@@ -43,11 +55,46 @@ ngOnInit(): void {
 
 
 OnLoadSO(){
-  this.router.navigate(['loadObservación'])
+  const cargo = localStorage.getItem('cargo')
+
+  if(cargo){
+    if(cargo === '2' || cargo === '3' || cargo === '4'){
+
+      this.router.navigate(['loadObservación'])
+
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No posees los permisos adecuados',
+        
+      })
+    }
+
+  }
+
+
 }
 
-OnLoadCuracion(){
-  this.router.navigate(['loadCuración'])
+OnLoadPracticaEnfermeria(){
+  const cargo = localStorage.getItem('cargo')
+
+  if(cargo){
+    if(cargo === '2' || cargo === '3' || cargo === '4'){
+
+      this.router.navigate(['loadCuración'])
+      
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No posees los permisos adecuados',
+        
+      })
+    }
+
+  }
+
 }
 
 

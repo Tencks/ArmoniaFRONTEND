@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,10 +20,36 @@ export class LoadObservacionesMedicoComponent implements OnInit {
   
   
   
-    constructor(private api:ApiService, private router:Router, private fomBuilder: FormBuilder, private notificacionesService: NotificacionesServiceService){}
+    constructor(private api:ApiService, private router:Router, private fomBuilder: FormBuilder, private notificacionesService: NotificacionesServiceService,private location: Location){}
   
   
     ngOnInit(): void {
+
+      const cargo = localStorage.getItem('cargo')
+      const token = localStorage.getItem('token')
+      
+      if(!token){
+        this.router.navigate(['login']);
+      }else{
+        if(cargo){
+          if(cargo === '2' || cargo === '3' || cargo === '4'){
+      
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Acesso Denegado',
+              text: 'No posees suficientes cargos para esto',
+              
+            })
+    
+            this.location.back()
+          }
+        }
+      
+       
+      }
+    
+
       this.api.getAllResidents().subscribe(residentes =>{
         this.residentes = residentes;
       })
@@ -36,7 +63,6 @@ export class LoadObservacionesMedicoComponent implements OnInit {
         saturacion : new FormControl('',Validators.required),
         pulso : new FormControl('',Validators.required),
         observacionesSemanales : new FormControl('',),
-        derivacionesSemanales : new FormControl('',),
   
       })
   

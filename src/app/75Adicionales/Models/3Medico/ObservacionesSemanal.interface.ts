@@ -7,7 +7,6 @@ export interface LoadSemanalOI{
     saturacion:string;
     pulso:string;  
     observacionesSemanales:string;
-    derivacionesSemanales:string;
 
 };
 
@@ -22,7 +21,6 @@ export interface listaSemanalOI{
         Saturacion: string;
         Pulso: number;
         Observaciones: string;
-        Derivaciones: string;
       }[];
    
 }

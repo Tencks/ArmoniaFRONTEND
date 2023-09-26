@@ -46,7 +46,10 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['usuarioPanel'])
   
   }
+  HomeEgresadosGO(){
+    this.router.navigate(['homeEgresados'])
   
+  }
   
   
   

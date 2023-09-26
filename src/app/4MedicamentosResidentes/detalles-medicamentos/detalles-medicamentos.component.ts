@@ -23,6 +23,16 @@ constructor(private api:ApiService, private router:Router,private activaterouter
 
 ngOnInit(): void {
 
+
+  const token = localStorage.getItem('token')
+    
+  if(!token){
+    this.router.navigate(['login']);
+  }else{
+   
+  }
+
+
   const residenteId = this.activaterouter.snapshot.params['id']; // Obtén el ID del residente desde los parámetros de la URL
 
   if (residenteId) {
@@ -152,13 +162,6 @@ MoreInfo(index: number){
 
       <hr class="mx-n3">
 
-      <div class="form-group">
-       <label for="Codigo">Derivaciones</label>
-       <textarea class="form-control" rows="3" id="derivacionesMedicamento" readonly>${medicamento.Derivaciones}</textarea>
-      </div>
-
-     <hr class="mx-n3">
-
     </form>
   `;
 
@@ -175,7 +178,12 @@ MoreInfo(index: number){
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
 
-  // Genera el contenido HTML para el modal de edición (similar al modal de detalles)
+      const cargo = localStorage.getItem('cargo')
+
+      if(cargo){
+        if(cargo === '2' || cargo === '4'){
+    
+        // Genera el contenido HTML para el modal de edición (similar al modal de detalles)
   const contenidoHtml = `
   <form id="UpdateMedicamento" >
 
@@ -196,8 +204,8 @@ MoreInfo(index: number){
       <div class="form-group">
         <label for="generico">Genérico</label>
         <select class="form-select" aria-label="Default select example" id="genericMedicamento" formControlName="Generico">
-        <option>Y</option>
-        <option>N</option>
+        <option>SI</option>
+        <option>N0</option>
       </select> 
      
       </div>  
@@ -240,9 +248,6 @@ MoreInfo(index: number){
     <select class="form-select" aria-label="Default select example"  id="medicionMedicamento">
     <option value="0">ml</option>
     <option value="1">g</option>
-    <option value="2">píldora/as</option>
-    <option value="3">caja/as</option>
-    <option value="4">frasco/os</option>
   </select>
 
 
@@ -282,13 +287,6 @@ MoreInfo(index: number){
     </div>
 
     <hr class="mx-n3">
-
-    <div class="form-group">
-     <label for="Codigo">Derivaciones</label>
-     <textarea class="form-control" rows="3" id="derivacionesMedicamento"  >${medicamento.Derivaciones}</textarea>
-    </div>
-
-   <hr class="mx-n3">
 
   </form>
 `;
@@ -365,38 +363,74 @@ MoreInfo(index: number){
 
         })
 
-    } else if (result.isDenied) {
-
-
-      Swal.fire({
-        title: 'Confirmar Eliminación',
-        text: '¿Estás seguro de que deseas eliminar este medicamento? Esta acción es irreversible.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar',
-      }).then((result)=>{
-        if(result.isConfirmed){
-          // Realiza la solicitud al backend para eliminar el medicamento
-          const notificacion = `Se ha eliminado con éxito el medicamento`;
-          if (medicamento){
-            let data:any= this.Medicamentos;
-            const id = medicamento.id;
-            this.api.setMedicamentoID(id)
-            this.api.DeleteMedicamento(data).subscribe((datos)=>{
-              console.log(datos);
-              this.router.navigate(['homeMedicamentos'])
-            })
-          }
-          this.notificacionesService.agregarNotificacion(notificacion, 'red-bg')
-
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No posees los permisos adecuados',
+            
+          })
         }
+  
+      }
+    
 
 
 
-      })
+ 
+    }
+    
+    
+    
+    else if (result.isDenied) {
+
+      const cargo = localStorage.getItem('cargo')
+
+      if(cargo){
+        if(cargo === '4'){
+
+
+          Swal.fire({
+            title: 'Confirmar Eliminación',
+            text: '¿Estás seguro de que deseas eliminar este medicamento? Esta acción es irreversible.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar',
+          }).then((result)=>{
+            if(result.isConfirmed){
+              // Realiza la solicitud al backend para eliminar el medicamento
+              const notificacion = `Se ha eliminado con éxito el medicamento`;
+              if (medicamento){
+                let data:any= this.Medicamentos;
+                const id = medicamento.id;
+                this.api.setMedicamentoID(id)
+                this.api.DeleteMedicamento(data).subscribe((datos)=>{
+                  console.log(datos);
+                  this.router.navigate(['homeMedicamentos'])
+                })
+              }
+              this.notificacionesService.agregarNotificacion(notificacion, 'red-bg')
+    
+            }
+    
+    
+    
+          })
+            
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No posees los permisos adecuados',
+            
+          })
+        }
+  
+      }
+    
 
       
     }

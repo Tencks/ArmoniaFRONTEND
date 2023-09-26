@@ -8,7 +8,7 @@
     
     <div class="container">
       <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col" *ngFor="let paciente of pacientes" (click)="MoreInfo(paciente.id)">
+        <div class="col" *ngFor="let paciente of pacientes" (click)="MoreInfo(paciente.id)" style="cursor: pointer;">
     
           <div class="card mb-3" style="max-width: 540px; max-height: 20vh; border: 2px solid black; overflow: hidden;">
             <div class="row g-0">
@@ -28,7 +28,7 @@
     
         </div>
       
-        <div class="col" (click)="loadNew()">
+        <div *ngIf="cargoUsuario === '4'" class="col" (click)="loadNew()" style="cursor: pointer;">
     
         <div class="card mb-3" style="max-width: 540px;max-height: 20vh;border: 2px solid black;overflow: hidden;">
           <div class="row g-0">
@@ -60,7 +60,7 @@
     <div class="container">
     
       <div class="row">
-        <button class="btn btn-primary" (click)="loadNewMedicamento()">Nuevo medicamento</button>
+        <button *ngIf="cargoUsuario === '2' || cargoUsuario === '4'" class="btn btn-primary" (click)="loadNewMedicamento()">Nuevo medicamento</button>
       </div>
     
     </div>

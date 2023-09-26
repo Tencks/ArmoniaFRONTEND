@@ -14,6 +14,7 @@ export interface TokenI{
 export interface RegisterI{
     username?:string|null|undefined;
     password?:String|null;
+    confirmPassword?:string|null,
     email?:string|null;
     cargo?:string|null;
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './1LoginRegister/login/login.component';
 import { RegisterComponent } from './1LoginRegister/register/register.component';
@@ -21,6 +21,11 @@ import { DetallesUpdateComponent } from './6UsuarioPanel/detalles-update/detalle
 import { ArmoniaUpdateComponent } from './5MedicamentosArmonia/armonia-update/armonia-update.component';
 import { UpdateResidenteComponent } from './2Residentes/update-residente/update-residente.component';
 import { PermisosPanelComponent } from './6UsuarioPanel/permisos-panel/permisos-panel.component';
+import { HomeEgresadosComponent } from './2Residentes/22Egresos/home-egresados/home-egresados.component';
+import { DetallesEgresadosComponent } from './2Residentes/22Egresos/detalles-egresados/detalles-egresados.component';
+
+
+
 
 
 // LOGICA DEL RUTEO DE LA APP
@@ -31,36 +36,42 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
 
   // RESIDENTES
-  {path:'homeResidentes', component: HomeResidentesComponent},
-  {path:'detallesResidentes/:id',component:DetallesResidentesComponent},
-  {path:'updateResidente/:id', component:UpdateResidenteComponent},
+  {path:'homeResidentes', component: HomeResidentesComponent },
+  {path:'detallesResidentes/:id',component:DetallesResidentesComponent },
+  {path:'updateResidente/:id', component:UpdateResidenteComponent },
   {path:'loadResidente',component: LoadResidenteComponent},
 
+
+  //EGRESADOS DE RESIDENTES
+  {path:'homeEgresados', component: HomeEgresadosComponent },
+  {path:'detallesEgresados/:id',component:DetallesEgresadosComponent },
+  
+
   // PARTE MEDICA
-  {path:'homeMedico',component:HomeMedicoComponent},
-  {path:'detallesMedicos/:id',component:DetallesMedicoComponent},
+  {path:'homeMedico',component:HomeMedicoComponent },
+  {path:'detallesMedicos/:id',component:DetallesMedicoComponent },
 
   // MEDICAMENTOS DEL RESIDENTE
-  {path:'homeMedicamentos',component:HomeMedicamentosComponent},
-  {path:'detallesMedicamentos/:id',component:DetallesMedicamentosComponent},
-  {path:'loadMedicamento',component:LoadMedicamentoComponent},
+  {path:'homeMedicamentos',component:HomeMedicamentosComponent },
+  {path:'detallesMedicamentos/:id',component:DetallesMedicamentosComponent },
+  {path:'loadMedicamento',component:LoadMedicamentoComponent },
   
   // OBSERVACIONES SEMANALES
-  {path:'loadObservación',component:LoadObservacionesMedicoComponent},
-  {path:'viewObservación/:id',component:ObservacionesMedicoComponent},
+  {path:'loadObservación',component:LoadObservacionesMedicoComponent },
+  {path:'viewObservación/:id',component:ObservacionesMedicoComponent },
   
   // CURACIONES
-  {path:'loadCuración',component:LoadCuracionesMedicoComponent},
-  {path:'viewCuración/:id',component:CuracionesMedicoComponent},
+  {path:'loadCuración',component:LoadCuracionesMedicoComponent },
+  {path:'viewCuración/:id',component:CuracionesMedicoComponent },
 
 // MEDICAMENTOS DE ARMONIA
-  {path:'homeArmonia', component:HomeDetallesMedicamentosComponent},
-  {path:'UpdateArmonia', component:ArmoniaUpdateComponent},
-  {path:'loadMedicamentosArmonia',component:LoadMedicamentosArmoniaComponent},
+  {path:'homeArmonia', component:HomeDetallesMedicamentosComponent },
+  {path:'UpdateArmonia', component:ArmoniaUpdateComponent },
+  {path:'loadMedicamentosArmonia',component:LoadMedicamentosArmoniaComponent },
 
   // PANEL DEL USUARIO CONECTADO
-  {path:'usuarioPanel',component:HomeDetallesUsuarioComponent},
-  {path:'UpdateUser', component:DetallesUpdateComponent},
+  {path:'usuarioPanel',component:HomeDetallesUsuarioComponent },
+  {path:'UpdateUser', component:DetallesUpdateComponent },
   {path:'PermisosPanel', component:PermisosPanelComponent}
 
 ];

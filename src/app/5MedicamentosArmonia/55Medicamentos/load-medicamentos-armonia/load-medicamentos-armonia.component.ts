@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { StepperOrientation } from '@angular/material/stepper';
@@ -23,9 +24,34 @@ export class LoadMedicamentosArmoniaComponent  implements OnInit{
   
    Local: getLocalDataI | undefined;
   
-    constructor(private router:Router, private api:ApiService, private formBuilder: FormBuilder, private notificacionesService: NotificacionesServiceService){}
+    constructor(private router:Router, private api:ApiService, private formBuilder: FormBuilder, private notificacionesService: NotificacionesServiceService,private location:Location){}
   
     ngOnInit(): void {
+
+      const cargo = localStorage.getItem('cargo')
+      const token = localStorage.getItem('token')
+      
+      if(!token){
+        this.router.navigate(['login']);
+      }else{
+        if(cargo){
+          if(cargo === '2' || cargo === '4'){
+      
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Acesso Denegado',
+              text: 'No posees suficientes cargos para esto',
+              
+            })
+    
+            this.location.back()
+          }
+        }
+      
+       
+      }
+    
   
       this.api.getLocalData().subscribe(dato =>{
         this.Local = dato;
@@ -38,7 +64,7 @@ export class LoadMedicamentosArmoniaComponent  implements OnInit{
   
       this.LoadMedicamentoLocalForm = this.formBuilder.group({
   
-        localA : new FormControl('',Validators.required),
+        localA : new FormControl('1',Validators.required),
         genericMedicamento : new FormControl('',Validators.required),
         nombreMedicamento : new FormControl('',Validators.required),
         marcaMedicamento : new FormControl(''),
@@ -80,25 +106,43 @@ export class LoadMedicamentosArmoniaComponent  implements OnInit{
         console.log(newMedicamento)
         if (newMedicamento){
 
-          const residenteNombreCompleto = `${form.localA}`;
+
+
+
+                // Itera a través de los elementos del formulario
+                if (this.Local) {
+                                    
+                  // Verifica que el elemento sea un input o un select
+                  const nombre = this.Local.nombre;
+                  
+                  if (nombre) {
+                    // Agrega el valor al objeto utilizando el nombre del campo como clave
+                    const localNombre = `${nombre}`;
+
+
+
+
+
+         
           const medicamento = `${form.nombreMedicamento}`
-          const notificacion = `Se ha agregado con éxito el medicamento ${medicamento} a ${residenteNombreCompleto}`;
+          const notificacion = `Se ha agregado con éxito el medicamento ${medicamento} a ${localNombre}`;
 
           Swal.fire({
             icon: 'success',
             title: 'Agregar medicamento',
-            text: `Se ha agregado con éxito el medicamento ${medicamento} a ${residenteNombreCompleto}`,
+            text: `Se ha agregado con éxito el medicamento ${medicamento} a ${localNombre}`,
             confirmButtonText: 'Aceptar',
           }).then(() =>{
 
             this.notificacionesService.agregarNotificacion(notificacion,'green-bg')
-            this.router.navigate([''])
+            this.router.navigate(['homeArmonia'])
           })
 
           
         }
-      })
-  
+      }
+    }})
+    
     }
   
     CreateResidenteGO(){

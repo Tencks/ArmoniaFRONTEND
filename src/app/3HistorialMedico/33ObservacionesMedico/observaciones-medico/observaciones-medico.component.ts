@@ -98,16 +98,8 @@ MoreInfo(index: number){
 
 <hr class="mx-n3">
 
-              <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                          <label for="Medida">Derivaciones</label>
-                          <textarea class="form-control" rows="3" id="derivacion"  readonly>${observacion.Derivaciones}</textarea>
-                        </div>
-                    </div>
-              </div>
+          
 
-<hr class="mx-n3">
 
     </form>
   `;

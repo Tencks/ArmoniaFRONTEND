@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,10 +20,36 @@ export class LoadCuracionesMedicoComponent implements OnInit {
   
   
   
-    constructor(private api:ApiService, private router:Router, private fomBuilder: FormBuilder, private notificacionesService:NotificacionesServiceService){}
+    constructor(private api:ApiService, private router:Router, private fomBuilder: FormBuilder, private notificacionesService:NotificacionesServiceService,private location:Location){}
   
   
     ngOnInit(): void {
+
+      const cargo = localStorage.getItem('cargo')
+      const token = localStorage.getItem('token')
+      
+      if(!token){
+        this.router.navigate(['login']);
+      }else{
+        if(cargo){
+          if(cargo === '2' || cargo === '3' || cargo === '4'){
+      
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Acesso Denegado',
+              text: 'No posees suficientes cargos para esto',
+              
+            })
+    
+            this.location.back()
+          }
+        }
+      
+       
+      }
+    
+
       this.api.getAllResidents().subscribe(data =>{
         this.residentes = data;
       })
@@ -32,7 +59,7 @@ export class LoadCuracionesMedicoComponent implements OnInit {
         residenteC : new FormControl('',Validators.required),
         fechaRealizada : new FormControl('',Validators.required),
         profesional : new FormControl('',Validators.required),
-        medicacionAplicada : new FormControl('',Validators.required),
+        practicaAplicada : new FormControl('',Validators.required),
      
   
       })
@@ -63,14 +90,14 @@ export class LoadCuracionesMedicoComponent implements OnInit {
 
 
          
-          const medicamento = `${form.medicacionAplicada}`
-          const notificacion = `Se ha aplicado ${medicamento} con éxito a ${residenteNombreCompleto}`;
+        
+          const notificacion = `Se ha realizado la práctica con éxito a ${residenteNombreCompleto}`;
 
 
           Swal.fire({
             icon: 'success',
             title: 'Agregar Curación',
-            text: `Se ha aplicado ${medicamento} con éxito a ${residenteNombreCompleto}`,
+            text: `Se ha realizado la práctica con éxito a ${residenteNombreCompleto}`,
             
           }).then(()=>{
 

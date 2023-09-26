@@ -120,8 +120,8 @@
                       
                       <!-- Botones -->
                       <div class="d-flex justify-content-end mt-3">
-                        <a class="btn btn-primary me-2" (click)="OnLoadCuracion()">Agregar curación</a>
-                        <a class="btn btn-primary" (click)="OnLoadSO()">Agregar Observación</a>
+                        <a  *ngIf="cargoUsuario === '2' || cargoUsuario === '3' || cargoUsuario === '4'" class="btn btn-primary me-2" (click)="OnLoadPracticaEnfermeria()">Agregar práctica</a>
+                        <a  *ngIf="cargoUsuario === '2' || cargoUsuario === '3' || cargoUsuario === '4'" class="btn btn-primary" (click)="OnLoadSO()">Agregar Observación</a>
                       </div>
                     </div>
 
@@ -148,8 +148,8 @@
 
 <div class="text-center">
     
-<app-observaciones-medico></app-observaciones-medico>
-<app-curaciones-medico></app-curaciones-medico>
+<app-observaciones-medico></app-observaciones-medico> <app-curaciones-medico></app-curaciones-medico>
+
 
 </div>
 

@@ -7,6 +7,8 @@ import { ApiService } from 'src/app/75Adicionales/751Service/api.service';
 import { GENERO, GRUPOSANGUINEO, VINCULO } from 'src/app/75Adicionales/Models/10Tulpas/Tulpa.const';
 import { DetallesPacienteI, loadResidentesI } from 'src/app/75Adicionales/Models/2Residentes/Residentes.interface';
 import Swal from 'sweetalert2';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-update-residente',
@@ -24,27 +26,34 @@ export class UpdateResidenteComponent implements OnInit{
     Residente: DetallesPacienteI | undefined;
     selectedFile: string | undefined; // Declara la variable selectedFile
   
-  constructor(private api:ApiService, private router:Router, private formBuilder: FormBuilder, private notificaionesService: NotificacionesServiceService, private activaterouter: ActivatedRoute){}
+  constructor(private api:ApiService, private router:Router, private formBuilder: FormBuilder, private notificaionesService: NotificacionesServiceService, private activaterouter: ActivatedRoute, private location: Location){}
   
   ngOnInit(): void {
   
     const cargo = localStorage.getItem('cargo')
-  
+    const token = localStorage.getItem('token')
     
-    if(cargo){
-      if(cargo >= '2'){
+    if(!token){
+      this.router.navigate(['login']);
+    }else{
+      if(cargo){
+        if(cargo === '3' || cargo === '4'){
+    
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Acesso Denegado',
+            text: 'No posees suficientes cargos para esto',
+            
+          })
   
-      }else{
-        Swal.fire({
-          icon: 'error',
-          title: 'Acesso Denegado',
-          text: 'No posees suficientes cargos para esto',
-          
-        })
-
-        this.router.navigate(['']);
+           this.location.back()
+        }
       }
-
+    
+     
+    
+  
 
       const residenteId = this.activaterouter.snapshot.params['id']; // Obtén el ID del residente desde los parámetros de la URL
 

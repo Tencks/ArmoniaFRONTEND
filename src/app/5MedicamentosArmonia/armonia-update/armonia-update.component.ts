@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { StepperOrientation } from '@angular/material/stepper';
@@ -21,16 +22,16 @@ export class ArmoniaUpdateComponent implements OnInit{
   
 
 
-  constructor(private api:ApiService, private router:Router, private formBuilder: FormBuilder, private notificacionesService : NotificacionesServiceService){
+  constructor(private api:ApiService, private router:Router, private formBuilder: FormBuilder, private notificacionesService : NotificacionesServiceService,private location:Location){
 
     this.ArmoniaForm = this.formBuilder.group({
-      nombre: new FormControl(''), // Puedes inicializar estos valores con los datos actuales del usuario
-      foto:new FormControl(''),
+      nombre: new FormControl(''), 
+      habilitacionProvincial:new FormControl(''),
+      habilitacionMunicipal:new FormControl(''),
       localidad: new FormControl(''), 
-      domicilio:new FormControl(''),   // Puedes inicializar estos valores con los datos actuales del usuario
-      cuil:new FormControl(''),
-      fechaCreacion:new FormControl(''),
+      domicilio:new FormControl(''),  
       numeroTelefonico: new FormControl(''),
+      foto: new  FormControl('')
 
       // Otros campos del usuario
     });
@@ -61,6 +62,31 @@ export class ArmoniaUpdateComponent implements OnInit{
 
 
   ngOnInit(): void {
+
+    const cargo = localStorage.getItem('cargo')
+    const token = localStorage.getItem('token')
+    
+    if(!token){
+      this.router.navigate(['login']);
+    }else{
+      if(cargo){
+        if(cargo === '4'){
+    
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Acesso Denegado',
+            text: 'No posees suficientes cargos para esto',
+            
+          })
+  
+          this.location.back();
+        }
+      }
+    
+     
+    }
+  
       
     // ESTE ES EL MÉTODO PARA HACER QUE EL FORMULARIO SE CARGUE CON LOS DATOS ACTUALES DEL USUARIO
     this.api.getLocalData().subscribe(Local => {
@@ -69,11 +95,10 @@ export class ArmoniaUpdateComponent implements OnInit{
       this.ArmoniaForm.patchValue({
        
         nombre: Local.nombre ,
-        
-        localidad: Local.localidad ,
+        habilitacionProvincial: Local.habilitacionProvincial ,
+        habilitacionMunicipal: Local.habilitacionMunicipal,
         domicilio: Local.domicilio ,
-        cuil: Local.cuil ,
-        fechaCreacion: Local.fechaCreacion ,
+        localidad: Local.localidad ,
         numeroTelefonico: Local.numeroTelefonico ,
       })
 

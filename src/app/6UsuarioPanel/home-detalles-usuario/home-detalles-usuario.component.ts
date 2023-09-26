@@ -60,6 +60,15 @@ export class HomeDetallesUsuarioComponent implements OnInit{
 
   
   ngOnInit(): void {
+
+    const token = localStorage.getItem('token')
+    
+    if(!token){
+      this.router.navigate(['login']);
+    }else{
+     
+    }
+
       
     this.api.getUserData().subscribe(userDatos => {
       this.userDatos = userDatos;

@@ -28,24 +28,28 @@ export class LoadResidenteComponent implements OnInit{
   ngOnInit(): void {
   
     const cargo = localStorage.getItem('cargo')
-  
+    const token = localStorage.getItem('token')
     
-    if(cargo){
-      if(cargo >= '2'){
+    if(!token){
+      this.router.navigate(['login']);
+    }else{
+      if(cargo){
+        if(cargo === '4'){
+    
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Acesso Denegado',
+            text: 'No posees suficientes cargos para esto',
+            
+          })
   
-      }else{
-        Swal.fire({
-          icon: 'error',
-          title: 'Acesso Denegado',
-          text: 'No posees suficientes cargos para esto',
-          
-        })
-
-        this.router.navigate(['']);
+          this.router.navigate(['']);
+        }
       }
+    
+     
     }
-  
-   
   
   
     this.LoadRForm = this.formBuilder.group({

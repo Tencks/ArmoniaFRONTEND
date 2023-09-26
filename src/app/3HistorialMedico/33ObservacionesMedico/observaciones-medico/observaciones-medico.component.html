@@ -14,10 +14,10 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr *ngFor="let observa of SemanalOb; let i = index"  (click)="MoreInfo(i)">
-            <th scope="row" >Revisión de la semana</th>
-            <th scope="row" >{{observa.FechaConsulta}}</th>
-            <th scope="row" >{{observa.Observaciones}}</th>
+        <tr *ngFor="let observa of SemanalOb; let i = index"  (click)="MoreInfo(i)"  style="cursor: pointer;">
+            <td scope="row" >Revisión de la semana</td>
+            <td scope="row" >{{observa.FechaConsulta}}</td>
+            <td scope="row" >{{observa.Observaciones}}</td>
         </tr>
 
        

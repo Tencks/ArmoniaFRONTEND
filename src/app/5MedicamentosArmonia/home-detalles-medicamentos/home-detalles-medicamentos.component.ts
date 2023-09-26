@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,10 +18,40 @@ export class HomeDetallesMedicamentosComponent implements OnInit {
 
   Medicamentos: listaMedicamentosLocalI['localMedicamentos'] = [];
 
-  constructor(private api:ApiService, private router:Router, private fb: FormBuilder, private notificacionesService: NotificacionesServiceService){}
+  cargoUsuario = localStorage.getItem('cargo')
+
+
+  constructor(private api:ApiService, private router:Router, private fb: FormBuilder, private notificacionesService: NotificacionesServiceService,private location:Location){}
 
   ngOnInit(): void {
       
+
+    
+    const cargo = localStorage.getItem('cargo')
+    const token = localStorage.getItem('token')
+    
+    if(!token){
+      this.router.navigate(['login']);
+    }else{
+      if(cargo){
+        if(cargo === '2' || cargo === '4'){
+    
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Acesso Denegado',
+            text: 'No posees suficientes cargos para esto',
+            
+          })
+  
+          this.location.back()
+        }
+      }
+    
+     
+    }
+  
+
     this.api.getLocalData().subscribe(dato =>{
       this.Local = dato;
       console.log(this.Local, 'localA')
@@ -146,13 +177,6 @@ MoreInfo(index: number){
 
       <hr class="mx-n3">
 
-      <div class="form-group">
-       <label for="Codigo">Derivaciones</label>
-       <textarea class="form-control" rows="3" id="derivacionesMedicamento" readonly>${medicamento.Derivaciones}</textarea>
-      </div>
-
-     <hr class="mx-n3">
-
     </form>
   `;
 
@@ -168,6 +192,12 @@ MoreInfo(index: number){
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
+
+      const cargo = localStorage.getItem('cargo')
+
+        if(cargo){
+          if(cargo === '2' || cargo === '4'){
+      
 
   // Genera el contenido HTML para el modal de edición (similar al modal de detalles)
   const contenidoHtml = `
@@ -277,13 +307,6 @@ MoreInfo(index: number){
 
     <hr class="mx-n3">
 
-    <div class="form-group">
-     <label for="Codigo">Derivaciones</label>
-     <textarea class="form-control" rows="3" id="derivacionesMedicamento"  >${medicamento.Derivaciones}</textarea>
-    </div>
-
-   <hr class="mx-n3">
-
   </form>
 `;
         Swal.fire({
@@ -351,49 +374,83 @@ MoreInfo(index: number){
                 
               }
 
-
-
-
-
-
-
         })
+
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Acesso Denegado',
+              text: 'No posees suficientes cargos para esto',
+            })
+    
+            this.location.forward()
+          }
+        }
+      
+       
+      
+    
+
+
 
     } else if (result.isDenied) {
 
+      const cargo = localStorage.getItem('cargo')
 
-      Swal.fire({
-        title: 'Confirmar Eliminación',
-        text: '¿Estás seguro de que deseas eliminar este medicamento? Esta acción es irreversible.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar',
-      }).then((result)=>{
-        if(result.isConfirmed){
-          // Realiza la solicitud al backend para eliminar el medicamento
-          const notificacion = `Se ha eliminado con éxito el medicamento`;
-          if (medicamento){
-            let data:any= this.Medicamentos;
-            const id = medicamento.id;
-            this.api.setMedicamentoID(id)
-            this.api.DeleteMedicametoLocal(data).subscribe((datos)=>{
-              console.log(datos);
-              window.location.reload();
-            })
-          }
-          this.notificacionesService.agregarNotificacion(notificacion, 'red-bg')
-
-        }
-
-
-
-      })
-
+        if(cargo){
+          if(cargo === '2' || cargo === '4'){
       
-    }
+
+            Swal.fire({
+              title: 'Confirmar Eliminación',
+              text: '¿Estás seguro de que deseas eliminar este medicamento? Esta acción es irreversible.',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#3085d6',
+              confirmButtonText: 'Sí, eliminar',
+              cancelButtonText: 'Cancelar',
+            }).then((result)=>{
+              if(result.isConfirmed){
+                // Realiza la solicitud al backend para eliminar el medicamento
+                const notificacion = `Se ha eliminado con éxito el medicamento`;
+                if (medicamento){
+                  let data:any= this.Medicamentos;
+                  const id = medicamento.id;
+                  this.api.setMedicamentoID(id)
+                  this.api.DeleteMedicametoLocal(data).subscribe((datos)=>{
+                    console.log(datos);
+                    window.location.reload();
+                  })
+                }
+                this.notificacionesService.agregarNotificacion(notificacion, 'red-bg')
+      
+              }
+      
+      
+      
+            })
+      
+            
+          }
+            
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Acesso Denegado',
+              text: 'No posees suficientes cargos para esto',
+              
+            })
+    
+            this.location.forward()
+          }
+        }
+      
+       
+
+
+
+
   })
 
 }

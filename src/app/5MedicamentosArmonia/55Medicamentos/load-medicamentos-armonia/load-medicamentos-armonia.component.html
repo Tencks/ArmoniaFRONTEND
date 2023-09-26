@@ -8,13 +8,13 @@
     
       <mat-horizontal-stepper [linear]="true" [orientation]="orientation" [selectedIndex]="currentStep">
         <mat-step  [completed]="currentStep >= 0">
-          <ng-template matStepLabel>A que persona se asigna</ng-template>
+          <ng-template matStepLabel>Datos principales</ng-template>
           <!-- Primera etapa -->
           <!-- Aquí coloca los campos correspondientes al residente -->
     
           <div class="row">
             <div class="col">
-              <mat-label>Asignar al residente</mat-label>
+              <mat-label>El local</mat-label>
               <select class="form-select" formControlName="localA">
                 <option *ngIf="Local" [value]="Local.id">{{ Local.nombre }}</option>
               </select>
@@ -102,13 +102,7 @@
         
                 <hr class="mx-n3">
         
-                <div class="row">
-                  <div class="col">
-                    <mat-label>Derivaciones del medicamento</mat-label>
-                    <textarea class="form-control" rows="3" placeholder="Derivaciones hechas por el medico de cabecera"  formControlName="derivacionesMedicamento"></textarea>
-                  </div>
-                </div>
-  
+
                     <div>
                       <button mat-button matStepperPrevious>Anterior</button>
                       <button mat-button (click)="OnLoadMedicamento(LoadMedicamentoLocalForm.value)">Cargar</button>

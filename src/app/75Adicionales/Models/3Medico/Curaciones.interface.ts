@@ -3,7 +3,7 @@ export interface LoadCuracionI{
     residenteC:string;
     fechaRealizada:Date;
     profesional:string;
-    medicacionAplicada:string;
+    practicaAplicada:string;
 };
 
 
@@ -13,7 +13,7 @@ export interface listaCuracionesI{
     {
         fechaRealizada: Date;
         profesional: string;
-        MedicacionAplicada: string;
+        practicaAplicada: string;
       }[];
    
 }

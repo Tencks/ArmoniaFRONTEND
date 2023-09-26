@@ -18,11 +18,22 @@ constructor(private api:ApiService, private router:Router){}
 
 ngOnInit(): void {
     
+  const token = localStorage.getItem('token')
+    
+  if(!token){
+    this.router.navigate(['login']);
+  }else{
+   
+  }
+
   this.api.getAllResidents().subscribe(pacientes =>{
     console.log(pacientes);
-    this.pacientes = pacientes;
-   })
+    
 
+    // Filtrar residentes de residentes egresados 
+    this.pacientes = pacientes.filter((paciente) => !paciente.egresado)
+
+   })
 }
 
 

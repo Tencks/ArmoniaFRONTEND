@@ -14,6 +14,8 @@ export class DetallesResidentesComponent implements OnInit {
   pacientes:listaResidentesI[] =[];
   pacienteDetalles:DetallesPacienteI | undefined;
   
+  cargoUsuario = localStorage.getItem('cargo')
+
 
   constructor( private router:Router, private api:ApiService, private activaterouter: ActivatedRoute){
     
@@ -21,6 +23,16 @@ export class DetallesResidentesComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    const token = localStorage.getItem('token')
+    
+    if(!token){
+      this.router.navigate(['login']);
+    }else{
+     
+    }
+
+
     const residenteId = this.activaterouter.snapshot.params['id']; // Obtén el ID del residente desde los parámetros de la URL
 
     if (residenteId) {
@@ -41,23 +53,46 @@ export class DetallesResidentesComponent implements OnInit {
 
 
   OnUpdateResident(pacienteID: listaResidentesI['id']){
-    this.api.setPacienteID(pacienteID)
-    this.router.navigate(['updateResidente',pacienteID])
+
+    const cargo = localStorage.getItem('cargo')
+
+    if(cargo){
+      if(cargo === '3' || cargo === '4'){
+  
+        this.api.setPacienteID(pacienteID)
+        this.router.navigate(['updateResidente',pacienteID])
+        
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No posees los permisos adecuados',
+          
+        })
+      }
+
+    }
+  
+  
   }
 
 
 
 
-  OnDeleteResident(){
+  OnEgresarResident(){
     
+    const cargo = localStorage.getItem('cargo')
+
+    if(cargo){
+      if( cargo === '4'){
+
     if (this.pacienteDetalles){
-      const NombreCompleto = `${this.pacienteDetalles.nombreResidente} ${this.pacienteDetalles.apellidoResidente}`
-      
+      const NombreCompleto = `${this.pacienteDetalles.nombreResidente} ${this.pacienteDetalles.apellidoResidente}`    
       
       Swal.fire({
         icon:'error',
-        title:'Eliminar Residente',
-        text:`Está seguro que desea eliminar a ${NombreCompleto} `,
+        title:'Egresar Residente',
+        text:`Está seguro que desea egresar a ${NombreCompleto} `,
         showCancelButton: true,
         confirmButtonText: `Sí`,
         cancelButtonText: `Cancelar`,
@@ -65,18 +100,40 @@ export class DetallesResidentesComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           if (this.pacienteDetalles) {
-            let datos: DetallesPacienteI = this.pacienteDetalles;
-            this.api.deleteResident(datos).subscribe((data) => {
-              console.log(data);
-              this.router.navigate(['']);
-            });
+            
+            this.pacienteDetalles.egresado = 'true';
+            this.actualizarEstado(this.pacienteDetalles)
           }
         }
       });
     }
+
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No posees los permisos adecuados',
+          
+        })
+      }
+
+    }
+  
+  
   }
+
+  actualizarEstado(datos:DetallesPacienteI){
+    this.api.egresarResident(datos).subscribe((datos)=>{
+      console.log(datos);
+      this.router.navigate(['homeEgresados'])
+
+      
+    })
+  }
+
+
+
 }
-//Este código utiliza el método setPacienteID(id: any) en tu servicio para establecer el pacienteID antes de realizar la solicitud getResidenteDetails(). Además, obtiene el residenteId de los parámetros de la URL usando this.activatedRoute.snapshot.params.id. Si no se encuentra un ID en la URL, puedes manejarlo según tus necesidades, como redirigir a una página de error o realizar otra acción específica para tu aplicación.
 
 
 

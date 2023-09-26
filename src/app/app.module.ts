@@ -37,9 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificacionesComponent } from './75Adicionales/Notificaciones/notificaciones/notificaciones.component';
 import { ArmoniaUpdateComponent } from './5MedicamentosArmonia/armonia-update/armonia-update.component';
 import { UpdateResidenteComponent } from './2Residentes/update-residente/update-residente.component';
-import { UpdateMedicamentoComponent } from './4MedicamentosResidentes/44Medicamentos/update-medicamento/update-medicamento.component';
-import { UpdateMedicamentoArmoniaComponent } from './5MedicamentosArmonia/55Medicamentos/update-medicamento-armonia/update-medicamento-armonia.component';
 import { PermisosPanelComponent } from './6UsuarioPanel/permisos-panel/permisos-panel.component';
+import { HomeEgresadosComponent } from './2Residentes/22Egresos/home-egresados/home-egresados.component';
+import { DetallesEgresadosComponent } from './2Residentes/22Egresos/detalles-egresados/detalles-egresados.component';
 
 
 
@@ -69,9 +69,9 @@ import { PermisosPanelComponent } from './6UsuarioPanel/permisos-panel/permisos-
     NotificacionesComponent,
     ArmoniaUpdateComponent,
     UpdateResidenteComponent,
-    UpdateMedicamentoComponent,
-    UpdateMedicamentoArmoniaComponent,
     PermisosPanelComponent,
+    HomeEgresadosComponent,
+    DetallesEgresadosComponent,
   ],
   imports: [
     BrowserModule,

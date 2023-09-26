@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/75Adicionales/751Service/api.service';
@@ -13,13 +14,47 @@ export class HomeMedicamentosComponent  implements OnInit{
 
   pacientes:listaResidentesI[]=[];
 
-  constructor(private api:ApiService, private router:Router){  }
+  cargoUsuario = localStorage.getItem('cargo')
+
+
+  constructor(private api:ApiService, private router:Router, private location:Location){  }
 
 
 ngOnInit(): void {
+
+  const cargo = localStorage.getItem('cargo')
+  const token = localStorage.getItem('token')
+  
+  if(!token){
+    this.router.navigate(['login']);
+  }else{
+    if(cargo){
+      if(cargo === '2' || cargo === '4'){
+  
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Acesso Denegado',
+          text: 'No posees suficientes cargos para esto',
+          
+        })
+
+        this.location.back();
+      }
+    }
+  
+   
+  }
+
+
+
   this.api.getAllResidents().subscribe(pacientes =>{
     console.log(pacientes);
-    this.pacientes = pacientes;
+    
+
+    // Filtrar residentes de residentes egresados 
+    this.pacientes = pacientes.filter((paciente) => !paciente.egresado)
+
    })
 }
 
@@ -35,7 +70,7 @@ loadNewMedicamento(){
 
 
   if(cargo){
-    if(cargo >= '2'){
+    if(cargo === '2' || cargo === '4'){
 
   this.router.navigate(['loadMedicamento']);
     }else{

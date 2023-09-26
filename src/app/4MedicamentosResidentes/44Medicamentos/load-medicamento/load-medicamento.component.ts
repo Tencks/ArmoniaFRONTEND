@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { StepperOrientation } from '@angular/material/stepper';
@@ -23,10 +24,38 @@ export class LoadMedicamentoComponent implements OnInit{
    LoadMedicamentoForm !: FormGroup;
   
    residentes: listaResidentesI[] = [];
+
+   cargoUsuario = localStorage.getItem('cargo')
+
   
-    constructor(private router:Router, private api:ApiService, private formBuilder: FormBuilder, private notificacionesService: NotificacionesServiceService){}
+    constructor(private router:Router, private api:ApiService, private formBuilder: FormBuilder, private notificacionesService: NotificacionesServiceService, private location: Location){}
   
     ngOnInit(): void {
+
+      const cargo = localStorage.getItem('cargo')
+      const token = localStorage.getItem('token')
+      
+      if(!token){
+        this.router.navigate(['login']);
+      }else{
+        if(cargo){
+          if(cargo === '2' || cargo === '4'){
+      
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Acesso Denegado',
+              text: 'No posees suficientes cargos para esto',
+              
+            })
+    
+            this.location.back();
+          }
+        }
+      
+       
+      }
+    
   
       this.api.getAllResidents().subscribe(data =>{
         this.residentes = data;

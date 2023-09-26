@@ -22,6 +22,7 @@ export interface loadResidentesI{
     obraSocial?:string|null|undefined;
     vinculoConElResidente?:string|null|undefined;
     fotoResidente?:string;
+    egresado:string;
 }
 
 
@@ -47,6 +48,7 @@ export interface listaResidentesI{
     obraSocial:string;
     vinculoConElResidente:string;
     fotoResidente:string;
+    egresado:string;
 }
 
 export interface DetallesPacienteI{
@@ -72,5 +74,6 @@ export interface DetallesPacienteI{
     obraSocial:string;
     vinculoConElResidente:string;
     fotoResidente:string;
+    egresado:string;
 };
 

@@ -1,12 +1,12 @@
 export interface getLocalDataI{
     id:string|number;
     nombre: string;
-    localidad: string;
-    domicilio: string;
-    cuil: string;
-    numeroTelefonico: string;
     foto: string|null;
-    fechaCreacion: string|null;
+    habilitacionProvincial:string;
+    habilitacionMunicipal:string;
+    domicilio: string;
+    localidad: string;
+    numeroTelefonico: string;
 }
 
 export interface LoadMedicamentoLocalI{
@@ -25,7 +25,6 @@ export interface LoadMedicamentoLocalI{
 
     codMedicamento:string;
     observacionesMedicamento:string;
-    derivacionesMedicamento:string;
 };
 
 
@@ -48,7 +47,6 @@ export interface listaMedicamentosLocalI{
         
         Codigo: string;
         Observaciones: string;
-        Derivaciones: string;
       }[];
    
 }

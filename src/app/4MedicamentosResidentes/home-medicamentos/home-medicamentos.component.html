@@ -41,7 +41,7 @@
 <div class="container">
 
   <div class="row">
-    <button class="btn btn-primary" (click)="loadNewMedicamento()">Nuevo medicamento</button>
+    <button *ngIf="cargoUsuario === '2' || cargoUsuario === '4'" class="btn btn-primary" (click)="loadNewMedicamento()">Nuevo medicamento</button>
   </div>
   
 </div>

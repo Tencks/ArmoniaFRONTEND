@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/75Adicionales/751Service/api.service';
 import { CARGO } from 'src/app/75Adicionales/Models/10Tulpas/Tulpa.const';
@@ -18,14 +18,19 @@ export class RegisterComponent implements OnInit {
   cargoClass = CARGO;
 
   RegisterForm = new FormGroup({
+    email: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/), // Al menos 1 minúscula, 1 mayúscula y 1 número
+    ]),
+    confirmPassword: new FormControl('', [
+      Validators.required,
+    ]),
+    cargo: new FormControl('0', Validators.required)
+  });
 
-    email : new FormControl('',Validators.required),
-    username : new FormControl('',Validators.required),
-    password : new FormControl('',Validators.required),
-    password1 : new FormControl('',Validators.required),
-    cargo : new FormControl('0',Validators.required),
-    
-  })
 
   errorStatus:boolean = false;
   errorMsj:any ='';
@@ -49,11 +54,41 @@ constructor(private api:ApiService, private router:Router){}
     }
   }
  )
-
-
   }
+
   
   OnRegister(form: RegisterI){
+  // Verificar si form.password no es nulo ni indefinido antes de realizar la validación
+  if (form.password && form.confirmPassword) {
+    // Verificar si las contraseñas cumplen con los requisitos
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/;
+    const isPasswordValid =
+      form.password.length >= 8 && passwordPattern.test(form.password.toString());
+
+    if (!isPasswordValid) {
+      // Contraseña no cumple con los requisitos, mostrar mensaje de error
+      this.errorStatus = true;
+      this.errorMsj =
+        'La contraseña debe tener al menos 8 caracteres y contener al menos 1 letra mayúscula, 1 letra minúscula y 1 número.';
+      return; // Detener el proceso de registro
+    }
+
+    // Verificar si las contraseñas coinciden
+    if (form.password !== form.confirmPassword) {
+      // Contraseñas no coinciden, mostrar mensaje de error
+      this.errorStatus = true;
+      this.errorMsj = 'Las contraseñas no coinciden.';
+      return; // Detener el proceso de registro
+    }
+  } else {
+    // form.password o form.confirmPassword es nulo o indefinido, mostrar mensaje de error
+    this.errorStatus = true;
+    this.errorMsj = 'Por favor, ingrese una contraseña y una confirmación de contraseña válidas.';
+    return; // Detener el proceso de registro
+  }
+
+
+
     this.api.RegisterUser(form).subscribe(data =>{
       console.log(data);
       let dataRegister:RegisterI = data;
@@ -69,29 +104,7 @@ constructor(private api:ApiService, private router:Router){}
         this.router.navigate([''])
       }
     },
-    (error) => {
-      this.errorStatus = true;
-      if (error.status === 400) {
-        if (error.error && error.error.non_field_errors) {
-          // Acceder a los mensajes de error personalizados
-          const customErrors: string[] = error.error.non_field_errors;
-          // Puedes usar customErrors como sea necesario, por ejemplo, mostrarlos en la interfaz
-          this.errorMsj = customErrors[0]; // Mostrar el primer mensaje de error personalizado
-        } else {
-          // Manejo de otros errores como se mencionó anteriormente
-          this.errorMsj = 'Hubo un problema con la solicitud. Verifique sus datos e inténtelo de nuevo.';
-        }
-      } else if (error.status === 500) {
-        // Mensaje de error específico para Internal Server Error (500)
-        this.errorMsj = 'Ocurrió un error en el servidor. Por favor, inténtelo más tarde.';
-      } else if (error.status === 422) {
-        // Mensaje de error específico para Unprocessable Entity (422)
-        this.errorMsj = 'Los datos proporcionados no son válidos. Por favor, revise los campos.';
-      } else {
-        // Manejo de otros errores
-        this.errorMsj = 'Ocurrió un error en la solicitud. Por favor, inténtelo más tarde.';
-      }
-    }
+    
   );
 }
 }

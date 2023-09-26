@@ -16,7 +16,8 @@ import { NotificacionesServiceService } from './752NotificacionesService/notific
 export class ApiService {
 
 
-  private urlApi =  'https://drf-testeando-para-practicas.onrender.com/api/';
+  // private urlApi =  'https://drf-testeando-para-practicas.onrender.com/api/';  //USADA PARA EL BACKEND SUBIDO A INTERNET EN RENDER
+  private urlApi = 'http://127.0.0.1:8000/api/';  //USADA PARA EL BACKEND EN MODO LOCALHOST
   private pacienteID: DetallesPacienteI[] = [];
   private userID : getUserDataI[] =[];
   private medicamentoID : LoadMedicamentoI[] =[];
@@ -88,7 +89,7 @@ deleteResident(form:DetallesPacienteI):Observable<ResponseI>{
   let Options = {
     headers : new HttpHeaders({
       'Content-type':'aplication/json',
-      'Origin': 'http://www.whitenoiseland.com.ar'
+      'Origin': 'http://www.whitenoiseland.com.ar' || 'https://www.whitenoiseland.com.ar'
 
     }),
     body:form
@@ -103,7 +104,13 @@ let direccion = this.urlApi + "residentes/" + this.pacienteID + "/"
 return this.http.put<any>(direccion, updateData )
 }
 
+ //////////////////////////// METODOS PARA EGRESARLOS ///////////////
 
+ egresarResident(datos:DetallesPacienteI){
+  let direccion = this.urlApi +  "residentes/" + this.pacienteID + "/" + "egresarResidente/"
+
+  return this.http.post<any>(direccion,datos)
+ }
 
 
 
@@ -316,15 +323,12 @@ checkMedicationResidenteStatus(): void {
 
   const notificacionesGeneradas = new Set<string>();
 
-
- 
-
-
-
-
  // Realiza una solicitud para obtener la lista de residentes
  this.http.get<any[]>(this.urlApi + 'residentes/').subscribe((residentes) => {
+
+  
   for (const residente of residentes) {
+    if(residente.egresado){                                                              /////PARA OBSERVAR /////
     // Construye la URL de la solicitud para cada residente
     const direccion = `${this.urlApi}residentes/${residente.id}/medicamentos/status`;
 
@@ -358,6 +362,7 @@ checkMedicationResidenteStatus(): void {
     }
     
   });
+}
 }
   });
 }

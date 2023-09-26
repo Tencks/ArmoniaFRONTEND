@@ -120,7 +120,7 @@
   </form>
    
 
-  <div class="card d-flex" style="margin-top: 2%;">
+  <div class="card d-flex" style="margin-top: 2%;" *ngIf="cargoUsuario === '4'">
     <div class="card-body">
       <p>Si no encuentras al residente al cual deseas agregarle un medicamento, seguramente no este creado. Si deseas crearlo, <a class="fw-bold text-body" style="cursor: pointer;" (click)="CreateResidenteGO()"><u>haz click aquí.</u></a></p>
   </div>

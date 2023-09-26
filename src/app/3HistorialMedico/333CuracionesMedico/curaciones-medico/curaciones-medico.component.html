@@ -9,10 +9,10 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr *ngFor="let cura of curaciones">
-            <th scope="row" >{{cura.MedicacionAplicada}}</th>
-            <th scope="row" >{{cura.fechaRealizada}}</th>
-            <th scope="row" >{{cura.profesional}}</th>
+        <tr *ngFor="let cura of curaciones; let i = index"  (click)="MoreInfo(i)"  style="cursor: pointer;">
+            <td scope="row" >Correctamente</td>
+            <td scope="row" >{{cura.fechaRealizada | date: 'dd/mm/yyyy'}}</td>
+            <td scope="row" >{{cura.profesional}}</td>
         </tr>
 
        
