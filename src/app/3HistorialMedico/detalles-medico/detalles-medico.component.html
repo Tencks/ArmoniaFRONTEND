@@ -24,43 +24,47 @@
                     <!-- Detalles de cada residente -->
                  
                     
-                      <div class="table-responsive">
-                        <table class="table table-dark table-striped">
-                          <thead >
-                            <tr >
-                              <th scope="col">Nombre</th>
-                              <th scope="col">Apellido</th>
-                              <th scope="col">Edad</th>
-                              <th scope="col">Genero</th>
-                              <th scope="col">Grupo sanguíneo</th>
-                              <th scope="col">Fecha de nacimiento</th>
-                              <th scope="col">DNI Residente</th>
-                             
-                            </tr>
-                          </thead>
-                          <tbody class="table-group-divider">
-                            <tr  *ngIf="pacienteDetalles">
-                              <th scope="row" >{{pacienteDetalles.nombreResidente}}</th>
-                              <td>{{pacienteDetalles.apellidoResidente}}</td>
-                              <td>{{pacienteDetalles.edad}}</td>
-                              <td>{{pacienteDetalles.genero}}</td>
-                              <td>{{pacienteDetalles.grupoSanguineo}}</td>
-                              <td>{{pacienteDetalles.fechaNacimiento | date: 'dd/MM/yyyy'}}</td>
-                              <th scope="row" >{{pacienteDetalles.dniResidente}}</th>
-                          
-                            </tr>
+                    <div class="table-responsive">
+                      <table class="table table-dark table-striped" style="font-size: 1.1rem;">
+
+                        <thead >
+                          <tr >
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">DNI Residente</th>
+                            <th scope="col">Fecha de nacimiento</th>
+                            <th scope="col">Edad</th>
+                            <th scope="col">Grupo sanguíneo</th>
+                            
+                           
+                          </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                          <tr  *ngIf="pacienteDetalles">
+                            <td scope="row" >{{pacienteDetalles.nombreResidente}}</td>
+                            <td>{{pacienteDetalles.apellidoResidente}}</td>
+                            <td>{{pacienteDetalles.dniResidente}}</td>
+                            <td>{{pacienteDetalles.fechaNacimiento | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{pacienteDetalles.edad}}</td> 
+                            <td>{{pacienteDetalles.grupoSanguineo}}</td>
                         
-                          </tbody>
+                          </tr>
+                      
+                        </tbody>
+                      
+                      </table>
+
+                        <table class="table table-dark table-striped" style="font-size: 1.1rem;">
 
                           <thead>
                             <tr>
                               <th scope="col">Nombre Familiar</th>
                               <th scope="col">Apellido Familiar</th>
+                              <th scope="col">DNI Familiar</th>
                               <th scope="col">Domicilio</th>
                               <th scope="col">Localidad</th>
                               <th scope="col">Número telefónico</th>
                               <th scope="col">Vínculo con el Residente</th>
-                              <th scope="col">DNI Familiar</th>
 
                              
                       
@@ -68,48 +72,52 @@
                           </thead>
                           <tbody class="table-group-divider">
                             <tr *ngIf="pacienteDetalles">
-                              <th scope="row" >{{pacienteDetalles.nombreFamiliar}}</th>
+                              <td scope="row" >{{pacienteDetalles.nombreFamiliar}}</td>
                               <td>{{pacienteDetalles.apellidoFamiliar}}</td>
+                              <td>{{pacienteDetalles.dniFamiliar}}</td>
                               <td>{{pacienteDetalles.domicilioFamiliar}}</td>
                               <td>{{pacienteDetalles.localidadFamiliar}}</td>
                               <td>{{pacienteDetalles.numeroTelefonico}}</td>
                               <td>{{pacienteDetalles.vinculoConElResidente}}</td>
-                              <td>{{pacienteDetalles.dniFamiliar}}</td>
                             </tr>
                         
                           </tbody>
-
-
-                          <thead>
-                            <tr>
-
-                              <th scope="col">Número de habitación</th>        
-                              <th scope="col">Obra social</th>
-                              <th scope="col">Número de afiliado</th>
-                              <th scope="col">Medico de cabecera</th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                      
-                            </tr>
-                          </thead>
-                          <tbody class="table-group-divider">
-                            <tr *ngIf="pacienteDetalles">
-          
-                              <td>{{pacienteDetalles.numeroDeHabitacion}}</td>
-                              <td>{{pacienteDetalles.obraSocial}}</td>
-                              <td>{{pacienteDetalles.numeroAfiliado}}</td>
-                              <td>{{pacienteDetalles.medicoDeCabecera}}</td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                        
-                          </tbody>
-
 
                         </table>
-  
+
+
+                      <table class="table table-dark table-striped" style="font-size: 1.1rem;">
+
+                        <thead>
+                          <tr>
+
+                            <th scope="col">Número de afiliado</th>
+                            <th scope="col">Obra social</th>
+                            <th scope="col">Medico de cabecera</th>
+                            <th scope="col">Número de habitación</th>        
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                    
+                          </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                          <tr *ngIf="pacienteDetalles">
+        
+                            <td>{{pacienteDetalles.numeroAfiliado}}</td>
+                            <td>{{pacienteDetalles.obraSocial}}</td>
+                            <td>{{pacienteDetalles.medicoDeCabecera}}</td>
+                            <td>{{pacienteDetalles.numeroDeHabitacion}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                      
+                        </tbody>
+
+                      </table>
+
+ 
 
                     <!-- Sección del textarea y los botones -->
                     <div class="mt-3">

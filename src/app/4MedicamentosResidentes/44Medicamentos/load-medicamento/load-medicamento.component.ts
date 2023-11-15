@@ -58,10 +58,9 @@ export class LoadMedicamentoComponent implements OnInit{
     
   
       this.api.getAllResidents().subscribe(data =>{
-        this.residentes = data;
-    
-      })
-      
+            
+        this.residentes = data.filter((paciente) => !paciente.egresado)
+    })
   
   
       this.LoadMedicamentoForm = this.formBuilder.group({

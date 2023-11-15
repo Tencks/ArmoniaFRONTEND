@@ -105,7 +105,7 @@ MoreInfo(index: number){
   `;
 
   Swal.fire({
-    title: 'Detalles del Medicamento',
+    title: 'Detalles de la observación',
     icon: 'info',
     width: '60%',
     html: contenidoHtml,

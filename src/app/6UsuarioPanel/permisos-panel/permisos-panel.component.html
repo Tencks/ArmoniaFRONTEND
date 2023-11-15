@@ -20,8 +20,8 @@
                      
                     </tr>
                   </thead>
-                  <tbody class="table-group-divider">
-                    <tr  *ngFor="let UsersData of UsersData; let i = index"  (click)="MoreInfo(i)">
+                  <tbody class="table-group-divider" >
+                    <tr  *ngFor="let UsersData of UsersData; let i = index"  (click)="MoreInfo(i)" style="cursor: pointer;">
                       <td scope="row" >{{UsersData.username}}</td>
                       <td>{{UsersData.email}}</td>
                       <td>{{UsersData.cargo}}</td>

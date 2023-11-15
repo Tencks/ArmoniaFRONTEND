@@ -130,7 +130,7 @@ export class DetallesEgresadosComponent  implements OnInit {
                 let datos: DetallesPacienteI = this.pacienteDetalles;
                 this.api.deleteResident(datos).subscribe((data) => {
                   console.log(data);
-                  this.router.navigate(['']);
+                  this.router.navigate(['homeEgresados']);
                 });
               }
             }

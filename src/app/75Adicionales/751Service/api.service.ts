@@ -328,7 +328,7 @@ checkMedicationResidenteStatus(): void {
 
   
   for (const residente of residentes) {
-    if(residente.egresado){                                                              /////PARA OBSERVAR /////
+    if(!residente.egresado){                                                              /////PARA OBSERVAR /////
     // Construye la URL de la solicitud para cada residente
     const direccion = `${this.urlApi}residentes/${residente.id}/medicamentos/status`;
 

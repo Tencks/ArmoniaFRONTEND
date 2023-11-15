@@ -19,6 +19,13 @@ export class HomeEgresadosComponent   implements OnInit  {
 
   ngOnInit(): void {
   
+    const token = localStorage.getItem('token')
+    
+    if(!token){
+      this.router.navigate(['login']);
+    }else{
+     
+    }
     
     this.api.getAllResidents().subscribe(pacientes =>{
       console.log(pacientes);

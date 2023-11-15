@@ -11,7 +11,7 @@
       <tbody class="table-group-divider">
         <tr *ngFor="let cura of curaciones; let i = index"  (click)="MoreInfo(i)"  style="cursor: pointer;">
             <td scope="row" >Correctamente</td>
-            <td scope="row" >{{cura.fechaRealizada | date: 'dd/mm/yyyy'}}</td>
+            <td scope="row" >{{cura.fechaRealizada | date: 'dd/MM/yyyy'}}</td>
             <td scope="row" >{{cura.profesional}}</td>
         </tr>
 

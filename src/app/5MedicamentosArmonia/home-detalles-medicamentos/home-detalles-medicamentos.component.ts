@@ -334,7 +334,7 @@ MoreInfo(index: number){
                    // Itera a través de los elementos del formulario
                   for (const elemento of elementosArray) {
                     if (elemento instanceof HTMLInputElement || elemento instanceof HTMLSelectElement || elemento instanceof HTMLTextAreaElement) {
-                      // Verifica que el elemento sea un input o un select
+                      // Verifica que el elemento sea un input o un select o un textarea
                       const nombre = elemento.getAttribute('id');
                       const valor = elemento.value;
 

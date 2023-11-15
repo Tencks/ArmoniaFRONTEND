@@ -76,7 +76,7 @@ MoreInfo(index: number){
   `;
 
   Swal.fire({
-    title: 'Detalles del Medicamento',
+    title: 'Detalles de la práctica aplicada',
     icon: 'info',
     width: '60%',
     html: contenidoHtml,
